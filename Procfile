@@ -1,0 +1,1 @@
+web: gunicorn dreadify_project.wsgi
