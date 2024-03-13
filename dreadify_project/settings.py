@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'accounts',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeanyapp.com",
+    "https://*.herokuapp.com",
+    "https://8000-ryanferris7-dreadify-ehew3lys8l7.ws-eu109.gitpod.io"
+]
+
+MEDIA_ROOT = BASE_DIR / 'media/'
