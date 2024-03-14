@@ -18,7 +18,7 @@ def post_page(request, post):
     return render(request, 'post.html', {'post' : post})
 
 
-def blog_post(request):
+def blog_post(request, pk):
     form = CreateBlog()
     if request.method == 'POST':
         form = CreateBlog(request.POST)
@@ -27,3 +27,23 @@ def blog_post(request):
             return redirect('blog:homepage')
 
     return render(request, 'blog_post.html', {'form' : form})
+
+def edit_blog(request, pk):
+    blog = Post.objects.get(id=pk)
+    form = CreateBlog(instance=blog)
+
+    if request.method == 'POST':
+        form = CreateBlog(request.POST, instance=blog)
+        if form.is_valid():
+            form.save()
+            return redirect('blog:homepage')
+
+    return render(request, 'blog_post.html', {'form' : form})
+
+def delete_blog(request, pk):
+    blog = Post.objects.get(id=pk)
+    if request.method == 'POST':
+        blog.delete()
+        return redirect('blog:homepage')
+
+    return render(request, 'delete.html', {'obj':blog})

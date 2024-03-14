@@ -10,6 +10,8 @@
                 {% for post in posts %}
             
                 <div class="col-8"><h1><a href="{{post.get_absolute_url}}">{{post.title}}</a></h1></div>
+                <div class="col-12"><a href="{% url 'blog:edit-blog' pk=post.pk  %}">Edit</a></div>
+                <div class="col-12"><a href="{% url 'blog:delete-blog' pk=post.pk %}">Delete</a></div>
                 {% if post.image_url %}
                 <img src="{{ post.image.url }}" alt="{{ post.title }}">
                 {% endif %} 
