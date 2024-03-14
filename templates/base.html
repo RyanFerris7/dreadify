@@ -36,6 +36,19 @@
         </div>
     </nav>
 
+    <div class="container">
+        <div>
+            <h2>Categories</h2> <hr>
+        </div>
+        <div>
+            <a href="{% url 'blog:homepage' %}">All</a>
+        </div>
+        {% for category in categories %}
+            <div>
+                <a href="{% url 'blog:homepage' %}?q={{category|urlencode}}">{{category}}</a>
+            </div>
+        {% endfor %}
+    </div>
     
 
 

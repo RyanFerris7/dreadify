@@ -6,10 +6,12 @@ from .forms import CreateBlog
 
 def home(request):
 
-    all_posts = Post.new_manager.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
 
+    all_posts = Post.new_manager.filter(category__icontains=q)
+    categories = Post.categories
 
-    return render(request, 'index.html', {'posts' : all_posts})
+    return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories})
 
 
 def post_page(request, post):
@@ -18,7 +20,7 @@ def post_page(request, post):
     return render(request, 'post.html', {'post' : post})
 
 
-def blog_post(request, pk):
+def blog_post(request):
     form = CreateBlog()
     if request.method == 'POST':
         form = CreateBlog(request.POST)

@@ -13,7 +13,7 @@
                 <div class="col-12"><a href="{% url 'blog:edit-blog' pk=post.pk  %}">Edit</a></div>
                 <div class="col-12"><a href="{% url 'blog:delete-blog' pk=post.pk %}">Delete</a></div>
                 {% if post.image_url %}
-                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" style="height: 200px; width: auto;">
                 {% endif %} 
                 <div class="col-8"><h3>{{post.excerpt}}</h2></div>
                 <div class="col-8"><h4>{{post.author}}</h2></div>
