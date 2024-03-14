@@ -16,3 +16,8 @@ def post_page(request, post):
     post = get_object_or_404(Post, slug=post, status='publish')
 
     return render(request, 'post.html', {'post' : post})
+
+
+def blog_post(request):
+
+    return render(request, 'blog_post.html')
