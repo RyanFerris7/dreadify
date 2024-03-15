@@ -10,19 +10,26 @@
 
 </head>
 
+<style>
+    .navbar-nav .nav-link {
+        color: #fff;
+    }
+    .navbar-toggler-icon {
+        background-color: #fff;
+    }
+    .nav-logo {
+        height: 250px;
+        width: auto;
+    }
+</style>
+
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand logo" href="blog"><img src="assets/images/dreadify_logo.png" alt="DREADIFY"></a>
+    <nav class="navbar navbar-expand-lg bg-black">
+        <div class="container-fluid d-flex justify-content-center">
+            <a class="navbar-brand" href="blog"><img class="nav-logo" src="https://raw.githubusercontent.com/RyanFerris7/dreadify/main/assets/images/dreadify_logo.png" alt="DREADIFY"></a>
         </div>
-    </nav>
-
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">DREADIFY</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,6 +49,9 @@
         </div>
     </nav>
 
+
+   
+
     <div class="container">
         <div>
             <h2>Categories</h2> <hr>
@@ -51,7 +61,7 @@
         </div>
         {% for category in categories %}
             <div>
-                <a href="{% url 'blog:homepage' %}?q={{category|urlencode}}">{{category}}</a>
+                <a href="{% url 'blog:homepage' %}?q={{category}}">{{category}}</a>
             </div>
         {% endfor %}
     </div>
