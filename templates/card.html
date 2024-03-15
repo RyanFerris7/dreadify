@@ -1,0 +1,23 @@
+<div class="article-card">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12" style="border: solid 1px blue;">
+                <div class="row">
+                    <div class="col-3" style="border: solid 1px red;">
+                        {% if post.image_url %}
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}" style="height: 200px; width: auto;">
+                        {% endif %}
+                    </div>
+                    <div class="col-9" style="border: solid 1px red;">
+                        <h1><a href="{{post.get_absolute_url}}">{{post.title}}</a></h1>
+                        <h3>{{post.excerpt}}</h3>
+                        <h4>{{post.author}}</h4>
+                        <p>{{post.content|truncatewords:30|safe}}</p>
+                        <a href="{% url 'blog:edit-blog' pk=post.pk  %}">Edit</a>
+                        <a href="{% url 'blog:delete-blog' pk=post.pk %}">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
