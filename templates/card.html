@@ -13,8 +13,12 @@
                         <h3>{{post.excerpt}}</h3>
                         <h4>{{post.author}}</h4>
                         <p>{{post.content|truncatewords:30|safe}}</p>
-                        <a href="{% url 'blog:edit-blog' pk=post.pk  %}">Edit</a>
-                        <a href="{% url 'blog:delete-blog' pk=post.pk %}">Delete</a>
+                        <div>
+                            <a href="{% url 'blog:edit-blog' pk=post.pk  %}">Edit</a>
+                        </div>
+                        <div>  
+                            <a href="{% url 'blog:delete-blog' pk=post.pk %}">Delete</a>
+                        </div>
                     </div>
                 </div>
             </div>
