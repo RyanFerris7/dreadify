@@ -2,28 +2,29 @@
 
 {% block content %}
 
-    <div class="container">
-
-        <a href="{% url 'blog:create-blog' %}">Create Post</a>
-
-        <div class="row justify-content-md-center">
-                {% for post in posts %}
-            
-                <div class="col-8"><h1><a href="{{post.get_absolute_url}}">{{post.title}}</a></h1></div>
-                <div class="col-12"><a href="{% url 'blog:edit-blog' pk=post.pk  %}">Edit</a></div>
-                <div class="col-12"><a href="{% url 'blog:delete-blog' pk=post.pk %}">Delete</a></div>
-                 
-                <div class="col-8"><h3>{{post.excerpt}}</h2></div>
-                <div class="col-8"><h4>{{post.author}}</h2></div>
-                <div class="col-8"><p>{{post.content|truncatewords:30|safe}}</p></div>
-
-                {% endfor %}
+<div class="article-card">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12" style="border: solid 1px blue;">
+                    <div class="row">
+                        {% for post in posts %}
+                        <div class="col-3" style="border: solid 1px red;">
+                            {% if post.image_url %}
+                                <img src="{{ post.image.url }}" alt="{{ post.title }}" style="height: 200px; width: auto;">
+                            {% endif %}
+                        </div>
+                        <div class="col-9" style="border: solid 1px red;">
+                            <h1><a href="{{post.get_absolute_url}}">{{post.title}}</a></h1>
+                            <h3>{{post.excerpt}}</h3>
+                            <h4>{{post.author}}</h4>
+                            <p>{{post.content|truncatewords:30|safe}}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
-    
-
-    
-</div>
-
+    </div>
 
 
 {% endblock %}

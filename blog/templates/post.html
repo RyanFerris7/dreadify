@@ -9,6 +9,11 @@
 
             <div class="col-12"><h1>{{post.title}}</h1></div>
             <div class="col-12"><h2>{{post.author}}</h2></div>
+
+            <div class="col-12"><a href="{% url 'blog:edit-blog' pk=post.pk  %}">Edit</a></div>
+                <div class="col-12"><a href="{% url 'blog:delete-blog' pk=post.pk %}">Delete</a></div>
+
+                
             <div class="col-12"><p>{{post.content}}</p></div>
             {% if post.image_url %}
             <img src="{{ post.image.url }}" alt="{{ post.title }}">
