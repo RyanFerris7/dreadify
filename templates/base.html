@@ -11,43 +11,68 @@
 </head>
 
 <style>
-    .navbar-nav .nav-link {
+    .nav-link {
         color: #fff;
+        text-transform: uppercase;
     }
-    .navbar-toggler-icon {
-        background-color: #fff;
-    }
-    .nav-logo {
-        height: 250px;
-        width: auto;
+    .category-list {
+        float: left;
+        text-align: center;
+        width: 100%;
     }
 </style>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-black">
-        <div class="container-fluid d-flex justify-content-center">
-            <a class="navbar-brand" href="blog"><img class="nav-logo" src="https://raw.githubusercontent.com/RyanFerris7/dreadify/main/assets/images/dreadify_logo.png" alt="DREADIFY"></a>
-        </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Browse</a>
-                    </li>
-                </ul>
+    <nav class="navbar bg-black">
+        <div class="container">
+
+            <div class="row justify-content-center" style="border: solid 1px red;">
+                <div class="col-12 mx-auto">
+                    <a class="navbar-brand" href="#">
+                        <img class="mx-auto d-block" src="https://raw.githubusercontent.com/RyanFerris7/dreadify/main/assets/images/dreadify_logo.png" alt="DREADIFY">
+                    </a>
+                </div>
             </div>
         </div>
+        <div class="container">
+            <div class="category-list">
+                <div class="row">
+                    <div class="col" style="border: solid 1px red;">
+                        <a class="nav-link" href="{% url 'blog:homepage' %}">All</a> 
+                    </div>
+    
+                    <div class="col" style="border: solid 1px red;">
+                        <a class="nav-link" href="{% url 'blog:homepage' %}?q={{'gaming'}}">Gaming</a>
+                    </div>
+    
+                    <div class="col" style="border: solid 1px red;">
+                        <a class="nav-link" href="{% url 'blog:homepage' %}?q={{'film'}}">Film</a>
+                    </div>
+    
+                    <div class="col" style="border: solid 1px red;">
+                        <a class="nav-link" href="{% url 'blog:homepage' %}?q={{'books'}}">Books</a>
+                    </div>
+                </div>
+        </div>
+        </div>
+        
+            
+            
+        
     </nav>
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
    
 
     <div class="container">

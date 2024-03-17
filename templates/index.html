@@ -2,29 +2,32 @@
 
 {% block content %}
 
-<div class="article-card">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12" style="border: solid 1px blue;">
-                    <div class="row">
-                        {% for post in posts %}
-                        <div class="col-3" style="border: solid 1px red;">
-                            {% if post.image_url %}
-                                <img src="{{ post.image.url }}" alt="{{ post.title }}" style="height: 200px; width: auto;">
-                            {% endif %}
+<div class="article-card py-4">
+    <div class="container">
+        <div class="row justify-content-center]">
+            <div class="col-12">
+                <div class="row">
+                    {% for post in posts %}
+                    <div class="col-12 mb-3" style="border: solid 1px red;">
+                        <div class="row">
+                            <div class="col-6">
+                                {% if post.image_url %}
+                                    <img class="img-fluid img-thumbnail" src="{{ post.image.url }}" alt="{{ post.title }}" style="height: 200px; width: auto;">
+                                {% endif %}
+                            </div>
+                            <div class="col-6">
+                                <h1><a href="{{post.get_absolute_url}}">{{post.title}}</a></h1>
+                                <h4>{{post.excerpt}}</h4>
+                                <h5>{{post.author}}</h5>
+                                <!-- <p>{{post.content|truncatewords:15|safe}}</p> -->
+                            </div>
                         </div>
-                        <div class="col-9" style="border: solid 1px red;">
-                            <h1><a href="{{post.get_absolute_url}}">{{post.title}}</a></h1>
-                            <h3>{{post.excerpt}}</h3>
-                            <h4>{{post.author}}</h4>
-                            <p>{{post.content|truncatewords:30|safe}}</p>
-                        </div>
-                        {% endfor %}
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 
 {% endblock %}
