@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .models import Post
@@ -48,7 +49,7 @@ def post_page(request, post):
     post = get_object_or_404(Post, slug=post, status='publish')
     return render(request, 'post.html', {'post' : post})
 
-
+@login_required(login_url='blog:login')
 def blog_post(request):
     form = CreateBlog()
     if request.method == 'POST':
