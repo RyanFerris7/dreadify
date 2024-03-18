@@ -1,8 +1,37 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 from .models import Post
 from .forms import CreateBlog
 
 # Create your views here.
+
+def login_page(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.error(request, 'Username invalid.')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('blog:homepage')
+        
+        else:
+            messages.error(request, 'Username or Password does not exist.')
+    
+    context = {}
+    return render (request, 'login_register.html', context)
+
+def logout_page(request):
+    logout(request)
+    return redirect('blog:homepage')
 
 def home(request):
 
@@ -49,3 +78,4 @@ def delete_blog(request, pk):
         return redirect('blog:homepage')
 
     return render(request, 'delete.html', {'obj':blog})
+
