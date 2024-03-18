@@ -4,8 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.utils import timezone
 from .models import Post
-from .forms import CreateBlog
+from .forms import CreateBlog, CommentForm
 
 # Create your views here.
 
@@ -66,8 +67,25 @@ def home(request):
 
 def post_page(request, post):
     post_object = get_object_or_404(Post, slug=post, status='publish')
-    comments = post_object.comments.all()  # Accessing comments related to the post
-    context = {'post': post_object, 'comments': comments}
+    comments = post_object.comments.all()
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post_object
+            comment.author = request.user
+            comment.created = timezone.now()
+            comment.updated = timezone.now()
+            comment.save()
+            return redirect('blog:post_page', post=post)
+    else:  # Handle GET request
+        form = CommentForm()  # Assign a value to form for GET requests
+
+    context = {'post': post_object, 'comments': comments, 'form': form}
+    return render(request, 'post.html', context)
+
+    context = {'post': post_object, 'comments': comments, 'form': form}
     return render(request, 'post.html', context)
 
 @login_required(login_url='blog:login')

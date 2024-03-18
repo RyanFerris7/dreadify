@@ -26,11 +26,23 @@
 
             <h3>Share your thoughts</h3>
             <hr>
+
+            <div>
+                <h3>Add a comment</h3>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="Submit">Add Comment</button>
+                </form>
+            </div>
+
             <div>
                 {% for comment in comments %}
-                    <h4>@{{comments.user}}</h4>
-                    <small>{{comments.publish|timesince}}</small>
-                    <p>{{comments.content}}</p>
+                    <h4>@{{comment.author}}</h4>
+                    <small>{{comment.created|timesince}}</small>
+                    <p>{{comment.content}}</p>
+                    {% empty %}
+                    <p>Get the conversation started!</p>
                 {% endfor %}
             </div>
             
