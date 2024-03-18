@@ -38,6 +38,20 @@ def logout_page(request):
 
 def register_page(request):
     form = UserCreationForm()
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            #Creates object in memory, could use this to 
+            #check manage entered details if needed
+            user = form.save(commit=False)
+            user.save()
+            login(request, user)
+            return redirect('blog:homepage')
+        
+        else:
+            messages.error(request, 'An error has occured, please check your details.')
+
     return render(request, 'login_register.html', { 'form': form })
 
 def home(request):
