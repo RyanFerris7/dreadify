@@ -52,6 +52,8 @@ class Comments(models.Model):
 
     class Meta:
         ordering = ('-created', '-updated')
+        # Verbose name needed as I didn't know about Django auto adding s
+        verbose_name_plural = "Comments"
 
-        def __str__(self):
-            return self.content
+    def __str__(self):
+        return self.content[:25]
