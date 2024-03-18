@@ -10,9 +10,10 @@
             <div class="col-12"><h1>{{post.title}}</h1></div>
             <div class="col-12"><h2>{{post.author}}</h2></div>
 
+            {% if request.user.username == post.author.username %}
             <div class="col-12"><a href="{% url 'blog:edit-blog' pk=post.pk  %}">Edit</a></div>
-                <div class="col-12"><a href="{% url 'blog:delete-blog' pk=post.pk %}">Delete</a></div>
-
+            <div class="col-12"><a href="{% url 'blog:delete-blog' pk=post.pk %}">Delete</a></div>
+            {% endif %}
                 
             <div class="col-12"><p>{{post.content}}</p></div>
             {% if post.image_url %}
@@ -26,3 +27,4 @@
 </div>
 
 {% endblock %}
+

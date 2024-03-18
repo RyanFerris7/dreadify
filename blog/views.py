@@ -60,9 +60,13 @@ def blog_post(request):
 
     return render(request, 'blog_post.html', {'form' : form})
 
+@login_required(login_url='blog:login')
 def edit_blog(request, pk):
     blog = Post.objects.get(id=pk)
     form = CreateBlog(instance=blog)
+
+    if request.user != Post.author:
+        messages.error(request, 'Only the author can edit this post.')
 
     if request.method == 'POST':
         form = CreateBlog(request.POST, instance=blog)
@@ -72,11 +76,18 @@ def edit_blog(request, pk):
 
     return render(request, 'blog_post.html', {'form' : form})
 
+@login_required(login_url='blog:login')
 def delete_blog(request, pk):
     blog = Post.objects.get(id=pk)
+
+    if request.user != Post.author:
+        messages.error(request, 'Only the author can delete this post.')
+
     if request.method == 'POST':
         blog.delete()
         return redirect('blog:homepage')
 
     return render(request, 'delete.html', {'obj':blog})
+
+
 
