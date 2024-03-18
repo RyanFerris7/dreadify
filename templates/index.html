@@ -5,43 +5,57 @@
 <style>
     .article-img {
     height: 250px;
-    width: 500px;
+    width: 750px;
     }
-
+    .article-img:hover {
+        filter: hue-rotate(45deg);
+        transition: .3s ease-in-out;
+    }
+    .hr-div {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .article-divider {
+        width: 100%;
+    }
     .title{
     text-decoration: none;
     color: #ff0066;
     font-weight: 900;
     letter-spacing: .5px;
     font-family: Arial, Helvetica, sans-serif;
-    
+    font-size: 2rem;
+    } 
+    .title:hover {
+        color: #DC143C;
+        transition: .3s ease-in-out;
     }
-
-    
 </style>
 
 <div class="article-card py-4">
     <div class="container">
-        <div class="row justify-content-center]">
-            <div class="col-12">
+        <div class="row">
+            <div class="col-6">
                 <div class="row">
                     {% for post in posts %}
-                    <div class="col-12 mb-3">
+                    <div class="col-12 mb-3 align-self-center">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-5">
                                 {% if post.image_url %}
                                     <a href="{{post.get_absolute_url}}">
                                         <img class="img-fluid article-img" src="{{ post.image.url }}" alt="{{ post.title }}">
                                     </a>
                                 {% endif %}
                             </div>
-                            <div class="col-6">
+                            <div class="col-7">
                                 <small class="text-muted text-uppercase">{{post.category}} / {{post.publish}}</small>
                                 <h1><a class="title" href="{{post.get_absolute_url}}">{{post.title}}</a></h1>
                                 <h4>{{post.excerpt}}</h4>
-                                <small class="text-muted text-uppercase">{{post.author}}</small>
                                 <!-- <p>{{post.content|truncatewords:15|safe}}</p> -->
                             </div>
+                        </div>
+                        <div class="hr-div">
+                            <hr class="article-divider">
                         </div>
                     </div>
                     {% endfor %}
