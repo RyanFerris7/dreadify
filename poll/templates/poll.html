@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="poll-container">
+    <h1>{{ Poll.title }}</h1>
+    {% if request.user not already_voted %}
+
+    <form method="POST" action="#">
+
+        {% csrf_token %}
+
+        <button>Thumbs Up</button>
+
+        <button>Thumbs Down</button>
+
+    </form>
+
+    {% endif %}
+
+    <h3>Thumbs Up: {{ Vote.thumbs_up_count}}</h3>
+    <h3>Thuymbs Down: {{Vote.thumbs_down_count}}</h3>
+</div>
+
+
+{% endblock %}
