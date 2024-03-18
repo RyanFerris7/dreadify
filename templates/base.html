@@ -73,17 +73,6 @@
                     </div>
     
                     <div class="col">
-                        <a class="nav-link" href="{% url 'blog:homepage' %}?q={{'gaming'}}">Gaming</a>
-                    </div>
-    
-                    <div class="col">
-                        <a class="nav-link" href="{% url 'blog:homepage' %}?q={{'film'}}">Film</a>
-                    </div>
-    
-                    <div class="col">
-                        <a class="nav-link" href="{% url 'blog:homepage' %}?q={{'books'}}">Books</a>
-                    </div>
-                    <div class="col">
                         {% if request.user.is_authenticated %}
                         <a class="nav-link" href="{% url 'blog:logout' %}">Logout</a>
                         {% else %}
