@@ -3,12 +3,14 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 from .models import Post
 from .forms import CreateBlog
 
 # Create your views here.
 
 def login_page(request):
+    page = 'login'
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -27,12 +29,16 @@ def login_page(request):
         else:
             messages.error(request, 'Username or Password does not exist.')
     
-    context = {}
+    context = {'page':page}
     return render (request, 'login_register.html', context)
 
 def logout_page(request):
     logout(request)
     return redirect('blog:homepage')
+
+def register_page(request):
+    form = UserCreationForm()
+    return render(request, 'login_register.html', { 'form': form })
 
 def home(request):
 
