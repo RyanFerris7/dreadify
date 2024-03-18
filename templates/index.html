@@ -8,7 +8,7 @@
     width: 750px;
     }
     .article-img:hover {
-        filter: hue-rotate(45deg);
+        filter: contrast(125%);
         transition: .3s ease-in-out;
     }
     .hr-div {
@@ -30,6 +30,10 @@
         color: #DC143C;
         transition: .3s ease-in-out;
     }
+    .excerpt {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
 </style>
 
 <div class="article-card py-4">
@@ -50,7 +54,7 @@
                             <div class="col-7">
                                 <small class="text-muted text-uppercase">{{post.category}} / {{post.publish}}</small>
                                 <h1><a class="title" href="{{post.get_absolute_url}}">{{post.title}}</a></h1>
-                                <h4>{{post.excerpt}}</h4>
+                                <h4 class="excerpt">{{post.excerpt}}</h4>
                                 <!-- <p>{{post.content|truncatewords:15|safe}}</p> -->
                             </div>
                         </div>
