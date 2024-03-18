@@ -42,3 +42,16 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comments(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', default=None)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField(max_length=250)
+    created = models.DateTimeField()
+    updated = models.DateTimeField()
+
+    class Meta:
+        ordering = ('-created', '-updated')
+
+        def __str__(self):
+            return self.content

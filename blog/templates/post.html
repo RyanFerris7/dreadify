@@ -17,9 +17,25 @@
                 
             <div class="col-12"><p>{{post.content}}</p></div>
             {% if post.image_url %}
-            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" style="height: 250px; width: 250px;">
             {% endif %}
+            
         </div>
+        
+        <div class="comments">
+
+            <h3>Share your thoughts</h3>
+            <hr>
+            <div>
+                {% for comment in comments %}
+                    <h4>@{{comments.user}}</h4>
+                    <small>{{comments.publish|timesince}}</small>
+                    <p>{{comments.content}}</p>
+                {% endfor %}
+            </div>
+            
+        </div>
+
 
     </div>
 

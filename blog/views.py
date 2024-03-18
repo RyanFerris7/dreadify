@@ -65,9 +65,10 @@ def home(request):
 
 
 def post_page(request, post):
-
-    post = get_object_or_404(Post, slug=post, status='publish')
-    return render(request, 'post.html', {'post' : post})
+    post_object = get_object_or_404(Post, slug=post, status='publish')
+    comments = post_object.comments.all()  # Accessing comments related to the post
+    context = {'post': post_object, 'comments': comments}
+    return render(request, 'post.html', context)
 
 @login_required(login_url='blog:login')
 def blog_post(request):
