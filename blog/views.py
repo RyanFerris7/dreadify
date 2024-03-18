@@ -55,7 +55,10 @@ def blog_post(request):
     if request.method == 'POST':
         form = CreateBlog(request.POST)
         if form.is_valid():
-            form.save()
+            #Creates object in memory, adds user as author then saves it
+            blog_post = form.save(commit=False)
+            blog_post.author = request.user
+            blog_post.save()
             return redirect('blog:homepage')
 
     return render(request, 'blog_post.html', {'form' : form})
