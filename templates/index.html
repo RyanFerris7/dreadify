@@ -4,42 +4,54 @@
 
 <style>
     .article-img {
-    height: 250px;
-    width: 750px;
+        height: 300px;
+        width: 300px;
+        object-fit: fill;
     }
+
     .article-img:hover {
         filter: contrast(125%);
         transition: .3s ease-in-out;
     }
+
     .hr-div {
         display: flex;
         justify-content: flex-end;
     }
+
     .article-divider {
         width: 100%;
     }
-    .title{
-    text-decoration: none;
-    color: #ff0066;
-    font-weight: 900;
-    letter-spacing: .5px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 2rem;
-    } 
+
+    .title {
+        text-decoration: none;
+        color: #ff0066;
+        font-weight: 900;
+        letter-spacing: .5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.5rem;
+    }
+
     .title:hover {
         color: #DC143C;
         transition: .3s ease-in-out;
     }
+
     .excerpt {
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
     }
-    .poll-title, .counter {
+
+    .poll-title,
+    .counter {
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
         text-transform: uppercase;
     }
-    
+    .height-fixed {
+        height: 200px;
+        overflow: hidden;
+    }
 </style>
 
 
@@ -54,41 +66,50 @@
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 col-xxl-6 mx-auto">
                 <div class="row">
                     <div class="poll-container">
+
                         <small style="text-transform: uppercase;">Welcome, {{ request.user.username }}</small>
+
                         {% for poll in polls %}
-                            {% if messages %}
-                                {% for message in messages %}
-                                <small class="message">{{ message }}</small>
-                                {% endfor %}
-                            {% endif %}
-                            <h1 class="poll-title">{{ poll.title }}</h1>
-                            <form method="GET" action="{% url 'blog:poll_page' poll.id %}">
-                                {% csrf_token %}
-                                <button type="submit" name="thumbs_up" value="1"><i class="fa-solid fa-thumbs-up"> : {{ poll.thumbs_up_count }}</i></button>
-                                <button type="submit" name="thumbs_down" value="1"><i class="fa-solid fa-thumbs-down"> : {{ poll.thumbs_down_count }}</i></button>
-                            </form>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <small class="message">{{ message }}</small>
+                        {% endfor %}
+                        {% endif %}
+                        <h1 class="poll-title">{{ poll.title }}</h1>
+                        <form method="GET" action="{% url 'blog:poll_page' poll.id %}">
+                            {% csrf_token %}
+                            <button type="submit" name="thumbs_up" value="1"><i class="fa-solid fa-thumbs-up"> :
+                                    {{ poll.thumbs_up_count }}</i></button>
+                            <button type="submit" name="thumbs_down" value="1"><i class="fa-solid fa-thumbs-down"> :
+                                    {{ poll.thumbs_down_count }}</i></button>
+                        </form>
+                        <hr>
+                        <br>
                         {% endfor %}
                     </div>
+
                     {% for post in posts %}
-                    <div class="col-12 mb-3 align-self-center">
-                        <div class="row">
-                            <div class="col-5">
-                                {% if post.image_url %}
+                    <div class="col-12 mb-3 align-self-center height-fixed">
+                        <div class="row g-0">
+                            <div class="col-5 bg-dark height-fixed">
+                                <div class="wrapper">
+                                    {% if post.image_url %}
                                     <a href="{{post.get_absolute_url}}">
                                         <img class="img-fluid article-img" src="{{ post.image.url }}" alt="{{ post.title }}">
                                     </a>
-                                {% endif %}
+                                    {% endif %}
+                                </div>
                             </div>
-                            <div class="col-7">
+                            <div class="col-7 g-3 height-fixed">
                                 <small class="text-muted text-uppercase">{{post.category}} / {{post.publish}}</small>
                                 <h1><a class="title" href="{{post.get_absolute_url}}">{{post.title}}</a></h1>
-                                <h4 class="excerpt">{{post.excerpt}}</h4>
+                                <p class="excerpt">{{post.excerpt}}</p>
                                 <!-- <p>{{post.content|truncatewords:15|safe}}</p> -->
                             </div>
                         </div>
-                        <div class="hr-div">
-                            <hr class="article-divider">
-                        </div>
+                    </div>
+                    <div class="hr-div">
+                        <hr class="article-divider">
                     </div>
                     {% endfor %}
                 </div>
