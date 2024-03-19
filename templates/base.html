@@ -46,7 +46,7 @@
     .offcanvas-logo {
         height: 50px;
         width: 150px;
-        padding-left: 20px;
+        padding-left: 25px;
 
     }
     .menu-btn {
@@ -64,6 +64,30 @@
     }
     .sidebar-nav-link:hover{
         color: #DC143C;
+        letter-spacing: 1.5px;
+    }
+    .social {
+        font-size: 2rem;
+        margin-top: 5px;
+        color: #000;
+        transition: 0.5s ease;
+    }
+    .social:hover {
+        color: #DC143C;
+        scale: 1.2;
+    }
+    .social-footer {
+        font-size: 2rem;
+        margin-top: 5px;
+        color: #fff;
+        transition: 0.5s ease;
+    }
+    .social-footer:hover {
+        color: #DC143C;
+        scale: 1.2;
+    }
+    .connect-text {
+        text-transform: uppercase;
         letter-spacing: 1.5px;
     }
 
@@ -133,9 +157,9 @@
                                 {% endif %}
 
                                 <div class="sidebar-footer">
-                                    <small>Connect With Us</small>
+                                    <small class="connect-text">Connect With Us</small>
                                     <br>
-                                    <a href="https://github.com/RyanFerris7/dreadify" target="_blank"><i class="fa-brands fa-github"></i>
+                                    <a href="https://github.com/RyanFerris7/dreadify" target="_blank"><i class="fa-brands fa-github social"></i>
                                     </a>
                                     
                                 </div>
@@ -192,9 +216,9 @@
             </a>
             <br>
             <div>
-                <small class="text-white">Connect With Us</small>
+                <small class="text-white connect-text">Connect With Us</small>
                                     <br>
-                                    <a href="https://github.com/RyanFerris7/dreadify" target="_blank"><i class="fa-brands fa-github"></i>
+                                    <a href="https://github.com/RyanFerris7/dreadify" target="_blank"><i class="fa-brands fa-github social-footer"></i>
                                     </a>
             </div>
         </div>  
