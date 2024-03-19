@@ -80,7 +80,15 @@ class Poll(models.Model):
     Stores the poll title, key and vote count.
         
     """
+
+    categories = (
+        ('gaming', 'Gaming'),
+        ('film', 'Film'),
+        ('books', 'Books')
+    )
+
     title = models.CharField(max_length=250)
+    category = models.CharField(max_length=250, choices=categories, default='gaming')
     thumbs_up_count = models.IntegerField(default=0)
     thumbs_down_count = models.IntegerField(default=0)
 

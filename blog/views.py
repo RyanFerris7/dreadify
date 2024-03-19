@@ -97,7 +97,9 @@ def home(request):
     categories = Post.categories
     polls = Poll.objects.all()
 
-    return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':polls})
+    all_polls = Poll.objects.filter(category__icontains=q)
+
+    return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':all_polls})
 
 
 def post_page(request, post):
