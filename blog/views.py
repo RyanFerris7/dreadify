@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
-from .models import Post, Poll, Vote
-from .forms import CreateBlog, CommentForm
+from .models import Post, Poll, Vote, Article
+from .forms import CreateBlog, CommentForm, QuillPostForm
 
 # Create your views here.#
 def login_status_check(user):
@@ -88,7 +88,9 @@ def home(request):
     View function for website homepage and querying.
 
     Renders homepage, polls and published articles. 
-    Enables article sorting by category.
+    Enables article and poll sorting by category.
+
+    
     """
 
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -148,6 +150,10 @@ def blog_post(request):
             return redirect('blog:homepage')
 
     return render(request, 'blog_post.html', {'form' : form})
+
+@login_required(login_url='blog:login')
+def create_article(request):
+    return render(request, 'create_article.html', {'form': QuillPostForm()})
 
 @login_required(login_url='blog:login')
 def edit_blog(request, pk):
