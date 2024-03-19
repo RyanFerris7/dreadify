@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -8,8 +8,11 @@ from django.utils import timezone
 from .models import Post, Poll, Vote
 from .forms import CreateBlog, CommentForm
 
-# Create your views here.
+# Create your views here.#
+def login_status_check(user):
+    return not user.is_authenticated
 
+@user_passes_test(login_status_check, login_url='blog:homepage')
 def login_page(request):
     """
     View function that manages user login.
