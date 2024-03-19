@@ -37,6 +37,22 @@
 </style>
 
 
+<div class="poll-container container-fluid">
+    <h1>{{ Poll.title }}</h1>
+
+    <form method="POST" action="#">
+
+        {% csrf_token %}
+
+        <button>Thumbs Up</button>
+
+        <button>Thumbs Down</button>
+
+    </form>
+
+    <h3>Thumbs Up: {{ Vote.thumbs_up_count }}</h3>
+    <h3>Thuymbs Down: {{ Vote.thumbs_down_count }}</h3>
+</div>
 
 <div class="article-card py-4">
 

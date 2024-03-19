@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
-from .models import Post
+from .models import Post, Poll, Vote
 from .forms import CreateBlog, CommentForm
 
 # Create your views here.
@@ -132,9 +132,9 @@ def delete_blog(request, pk):
     return render(request, 'delete.html', {'obj':blog})
 
 def poll_page(request, item_id, thumbs_up_chosen):
-    poll = get_object_or_404(RunningPoll, pk=item_id)
+    poll = get_object_or_404(Poll, pk=item_id)
     user = request.user
-    already_voted = Vote.objects.filter(user=user, item=item).first
+    already_voted = Vote.objects.filter(user=user, item=item).exists()
     if already_voted:
         messages.error (request, 'You have already cast a vote.')
 
@@ -146,6 +146,6 @@ def poll_page(request, item_id, thumbs_up_chosen):
         item.thumbs_down_count += 1
         Poll.objects.create(user=user, item=item, thumbs_down=True)
 
-    return render(request, '', {'item':item})
+    return render(request, 'index.html', {'poll':poll})
     
 
