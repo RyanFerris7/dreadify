@@ -2,13 +2,18 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.conf import settings  # Import settings module
+import os  # Import os module
 
-# Create your models here.
+# Define the function to return the default image path
+def Default_Image():
+    return os.path.join(settings.MEDIA_URL, 'article_images/defaultimage.jpg')
+
 class Post(models.Model):
 
     class NewManager(models.Manager):
         def get_queryset(self):
-            return super().get_queryset() .filter(status='publish')
+            return super().get_queryset().filter(status='publish')
 
     post_status = (
         ('draft', 'Draft'),
@@ -30,7 +35,7 @@ class Post(models.Model):
     content = models.TextField()
     status = models.CharField(max_length=10, choices=post_status, default='draft')
     image_url = models.URLField(blank=True)
-    image = models.ImageField(upload_to='article_images', null=True)
+    image = models.ImageField(upload_to='article_images', null=True, default=Default_Image)  # Set default image using the function
     objects = models.Manager()
     new_manager = NewManager()
 
@@ -52,7 +57,6 @@ class Comments(models.Model):
 
     class Meta:
         ordering = ('-created', '-updated')
-        # Verbose name needed as I didn't know about Django auto adding s
         verbose_name_plural = "Comments"
 
     def __str__(self):
