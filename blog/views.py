@@ -11,6 +11,13 @@ from .forms import CreateBlog, CommentForm
 # Create your views here.
 
 def login_page(request):
+    """
+    View function that manages user login.
+    Renders the login form, and then attempts to validate credentials.
+
+    If credentials match, the user is logged in.
+    If credentials are invalid, an error message is displayed. 
+    """
     page = 'login'
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -34,10 +41,21 @@ def login_page(request):
     return render (request, 'login_register.html', context)
 
 def logout_page(request):
+    """
+    View function that manages user logout.
+
+    Logs the user out, and then redirects to website homepage. 
+    """
     logout(request)
     return redirect('blog:homepage')
 
 def register_page(request):
+    """
+    View function that manages user registration.
+
+    If registration is successful, user is logged in and redirected to homepage.
+    If registration fails, an error message is displayed.
+    """
     form = UserCreationForm()
 
     if request.method == 'POST':
@@ -56,6 +74,13 @@ def register_page(request):
     return render(request, 'login_register.html', { 'form': form })
 
 def home(request):
+    """
+    View function for website homepage and querying.
+
+    Renders homepage and published articles. 
+
+    Enables article sorting by category.
+    """
 
     q = request.GET.get('q') if request.GET.get('q') != None else ''
 
@@ -66,6 +91,14 @@ def home(request):
 
 
 def post_page(request, post):
+    """
+    View function for website article pages. 
+
+    Uses slug of article to return specific article.
+
+    Renders article with comments, and comment form.
+    If comment form is valid, saves the comment to the article.
+    """
     post_object = get_object_or_404(Post, slug=post, status='publish')
     comments = post_object.comments.all()
 
@@ -79,22 +112,24 @@ def post_page(request, post):
             comment.updated = timezone.now()
             comment.save()
             return redirect('blog:post_page', post=post)
-    else:  # Handle GET request
-        form = CommentForm()  # Assign a value to form for GET requests
-
-    context = {'post': post_object, 'comments': comments, 'form': form}
-    return render(request, 'post.html', context)
+    else: 
+        form = CommentForm() 
 
     context = {'post': post_object, 'comments': comments, 'form': form}
     return render(request, 'post.html', context)
 
 @login_required(login_url='blog:login')
 def blog_post(request):
+    """
+    View function for creating article pages.
+
+    Creates article object in memory, adds logged in user to it.
+    If the form is valid, the article is saved and rendered.
+    """
     form = CreateBlog()
     if request.method == 'POST':
         form = CreateBlog(request.POST)
         if form.is_valid():
-            #Creates object in memory, adds user as author then saves it
             blog_post = form.save(commit=False)
             blog_post.author = request.user
             blog_post.save()
@@ -104,6 +139,22 @@ def blog_post(request):
 
 @login_required(login_url='blog:login')
 def edit_blog(request, pk):
+    """
+    View function for editing blog.
+
+    The primary key of the article is used to specify the article being edited.
+
+    A user must be logged in to access this function.
+
+    Checks if the user attempting to edit the article is the author. 
+    If the user is not the author, an error message is displayed.
+    If the user is the author, an article edit option is displayed.
+
+    Retrieves current content from the article and allows changes to be made. 
+
+    If the article edit form is valid, the article is updated and rendered.
+    The user is then returned to the homepage.
+    """
     blog = Post.objects.get(id=pk)
     form = CreateBlog(instance=blog)
 
@@ -120,6 +171,21 @@ def edit_blog(request, pk):
 
 @login_required(login_url='blog:login')
 def delete_blog(request, pk):
+    """
+    View function that manages deleting articles.
+    The primary key of the article is used to specify the article being deleted.
+
+    A user must be logged in to access this function. 
+
+    Checks if the user is author of the article.
+    If the user is not the author, an error message is displayed.
+    If the user is the author, an article delete option is displayed.
+
+    * Note - Still needs a message display to warn the user that this cannot be undone *
+
+    After deletion, the user is returned to the homepage. 
+
+    """
     blog = Post.objects.get(id=pk)
 
     if request.user != Post.author:
@@ -132,6 +198,20 @@ def delete_blog(request, pk):
     return render(request, 'delete.html', {'obj':blog})
 
 def poll_page(request, item_id, thumbs_up_chosen):
+    """
+    View function for managing polls, and users voting on polls.
+
+    Users must be logged in to access this function.
+
+    Checks if a user has already voted, and displays an error message.
+
+    If the user votes 'thumbs_up', adds to poll count.
+    If the user votes 'thumbs_down', adds to poll count.
+
+    Updates and renders the poll. 
+
+    * Note - this functionality is not fully implemented *
+    """
     poll = get_object_or_404(Poll, pk=item_id)
     user = request.user
     already_voted = Vote.objects.filter(user=user, item=item).exists()
