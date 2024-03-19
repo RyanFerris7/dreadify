@@ -206,6 +206,7 @@ def poll_page(request, pk):
     Uses primary key to identify poll.
 
     Checks if a user has already voted, and displays an error message.
+    Temp removed due to bugs. 
 
     If the user votes 'thumbs_up', adds to poll count.
     If the user votes 'thumbs_down', adds to poll count.
@@ -229,12 +230,12 @@ def poll_page(request, pk):
     if thumbs_up:
         poll.thumbs_up_count += 1
         poll.save()
-        Vote.objects.create(user=user, poll=poll, thumbs_up_chosen=True)
+        Vote.objects.create(user=user, poll=poll, thumbs_up=True)
 
     elif thumbs_down:
         poll.thumbs_down_count += 1
-        poll.save
-        Vote.objects.create(user=user, poll=poll, thumbs_down_chosen=True)
+        poll.save()
+        Vote.objects.create(user=user, poll=poll, thumbs_down=True)
 
     else:
         messages.error(request, 'An error has occurred, please try again.')
