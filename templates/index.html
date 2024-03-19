@@ -39,6 +39,11 @@
 
 <div class="poll-container container-fluid">
     {% for poll in polls %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
         <h1>Today's Poll: {{ poll.title }}</h1>
 
         <form method="GET" action="{% url 'blog:poll_page' poll.id %}">
