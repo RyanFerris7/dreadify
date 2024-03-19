@@ -88,6 +88,10 @@
                                 <hr>
                                 <br>
 
+                                <a class="sidebar-nav-link" href="{% url 'blog:create-blog' %}">Create</a>
+                                <hr>
+                                <br>
+
                                 <a class="sidebar-nav-link" href="{% url 'blog:homepage' %}?q={{'gaming'}}">Gaming</a>
                                 <hr>
                                 <br>
@@ -137,6 +141,8 @@
                               <a class="dropdown-item" href="{% url 'blog:homepage' %}?q={{'gaming'}}">Gaming</a>
                               <a class="dropdown-item" href="{% url 'blog:homepage' %}?q={{'film'}}">Films</a>
                               <a class="dropdown-item" href="{% url 'blog:homepage' %}?q={{'books'}}">Books</a>
+                              <hr>
+                              <a class="dropdown-item" href="{% url 'blog:create-blog' %}">Create</a>
                             </div>
                           </div>
                     </div>
@@ -152,7 +158,7 @@
         </div>
         </div>     
     </nav>
-    <h1>Welcome, {{ request.user.username }}</h1>
+    
 
     
 

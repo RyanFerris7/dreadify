@@ -207,7 +207,6 @@ def poll_page(request, pk):
     Uses primary key to identify poll.
 
     Checks if a user has already voted, and displays an error message.
-    Temp removed due to bugs. 
 
     If the user votes 'thumbs_up', adds to poll count.
     If the user votes 'thumbs_down', adds to poll count.

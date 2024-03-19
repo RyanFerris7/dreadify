@@ -34,41 +34,41 @@
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
     }
+    .poll-title, .counter {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
 </style>
 
 
-<div class="poll-container container-fluid">
-    {% for poll in polls %}
-        {% if messages %}
-            {% for message in messages %}
-            <div class="message">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-        <h1>Today's Poll: {{ poll.title }}</h1>
 
-        <form method="GET" action="{% url 'blog:poll_page' poll.id %}">
-            {% csrf_token %}
-            <button type="submit" name="thumbs_up" value="1"><i class="fa-solid fa-thumbs-up"></i></button>
-            <button type="submit" name="thumbs_down" value="1"><i class="fa-solid fa-thumbs-down"></i></button>
-        </form>
-
-        <h3>Likes: {{ poll.thumbs_up_count }}</h3>
-        <h3>Dislikes: {{ poll.thumbs_down_count }}</h3>
-    {% endfor %}
-</div>
 
 
 
 <div class="article-card py-4">
 
-
-    <a href="{% url 'blog:create-blog' %}">Create</a>
-
-
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 col-xxl-6 mx-auto">
                 <div class="row">
+                    <div class="poll-container">
+                        <small style="text-transform: uppercase;">Welcome, {{ request.user.username }}</small>
+                        {% for poll in polls %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                <small class="message">{{ message }}</small>
+                                {% endfor %}
+                            {% endif %}
+                            <h1 class="poll-title">{{ poll.title }}</h1>
+                            <form method="GET" action="{% url 'blog:poll_page' poll.id %}">
+                                {% csrf_token %}
+                                <button type="submit" name="thumbs_up" value="1"><i class="fa-solid fa-thumbs-up"> : {{ poll.thumbs_up_count }}</i></button>
+                                <button type="submit" name="thumbs_down" value="1"><i class="fa-solid fa-thumbs-down"> : {{ poll.thumbs_down_count }}</i></button>
+                            </form>
+                        {% endfor %}
+                    </div>
                     {% for post in posts %}
                     <div class="col-12 mb-3 align-self-center">
                         <div class="row">
