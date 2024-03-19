@@ -2,42 +2,48 @@
 
 {%  block content %}
 
+
 {% if page == 'login' %}
+
 <div>
     <div>
-        <form method="POST" action="">
+        <div class="container">
+            <form method="POST" action="">
 
-            {% csrf_token %}
+                {% csrf_token %}
+        
+                <label>Username:</label>
+                <input type="text" name="username" class="form-control" placeholder="Enter Username">
+        
+                <label>Password:</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter Password">
+                
+                <button type="submit" class="btn btn-primary">Login</button>
     
-            <label>Username:</label>
-            <input type="text" name="username" placeholder="Enter Username">
+            </form>
     
-            <label>Password:</label>
-            <input type="password" name="password" placeholder="Enter Password">
-            
-            <input type="submit" value="Login">
-        </form>
-
-        <a href="{% url 'blog:register' %}"><h2>Join Us</h2></a>
-
-
+            <a href="{% url 'blog:register' %}"><h2>Join Us</h2></a>
+    
+    
+        </div>
     </div>
+        
 
     {% else %}
 
     <div>
-        <form method="POST" action="">
+        <div class="container">
+            <form method="POST" action="">
 
-            {% csrf_token %}
+                {% csrf_token %}
+        
+                {{form.as_p}}
+                
+                <input type="submit" value="Register">
+            </form>
     
-            {{form.as_p}}
-            
-            <input type="submit" value="Register">
-        </form>
-
-        <a href="{% url 'blog:login' %}"><h2>Already Joined Us?</h2></a>
-
-
+            <a href="{% url 'blog:login' %}"><h2>Already Joined Us?</h2></a>
+        </div>
     </div>
 </div>
 

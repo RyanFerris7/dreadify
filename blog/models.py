@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 from django.urls import reverse
 from django.conf import settings
 import os
@@ -37,7 +38,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
     content = models.TextField()
     status = models.CharField(max_length=10, choices=post_status, default='draft')
-    image_url = models.URLField(blank=True)
+    image_url = models.URLField()
     image = models.ImageField(upload_to='article_images', null=True, default=Default_Image)
     objects = models.Manager()
     new_manager = NewManager()
@@ -93,5 +94,4 @@ class Vote(models.Model):
     poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
     thumbs_up = models.BooleanField(default=False)
     thumbs_down = models.BooleanField(default=False)
-
 
