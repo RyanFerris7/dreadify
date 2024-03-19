@@ -76,7 +76,7 @@ class Poll(models.Model):
     """
     Model for polls.
 
-    Stores the poll title, and vote count.
+    Stores the poll title, key and vote count.
         
     """
     title = models.CharField(max_length=250)

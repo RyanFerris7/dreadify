@@ -77,8 +77,7 @@ def home(request):
     """
     View function for website homepage and querying.
 
-    Renders homepage and published articles. 
-
+    Renders homepage, polls and published articles. 
     Enables article sorting by category.
     """
 
@@ -86,8 +85,9 @@ def home(request):
 
     all_posts = Post.new_manager.filter(category__icontains=q)
     categories = Post.categories
+    polls = Poll.objects.all()
 
-    return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories})
+    return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':polls})
 
 
 def post_page(request, post):
@@ -202,6 +202,8 @@ def poll_page(request, item_id, thumbs_up_chosen):
     View function for managing polls, and users voting on polls.
 
     Users must be logged in to access this function.
+
+    Uses primary key to identify poll.
 
     Checks if a user has already voted, and displays an error message.
 

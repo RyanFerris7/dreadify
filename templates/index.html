@@ -38,7 +38,8 @@
 
 
 <div class="poll-container container-fluid">
-    <h1>{{ Poll.title }}</h1>
+    {% for poll in polls %}
+    <h1>Today's Poll: {{ poll.title }}</h1>
 
     <form method="POST" action="#">
 
@@ -50,9 +51,11 @@
 
     </form>
 
-    <h3>Thumbs Up: {{ Vote.thumbs_up_count }}</h3>
-    <h3>Thumbs Down: {{ Vote.thumbs_down_count }}</h3>
+    <h3>Thumbs Up: {{ poll.thumbs_up_count }}</h3>
+    <h3>Thumbs Down: {{ poll.thumbs_down_count }}</h3>
+    {% endfor %}
 </div>
+
 
 <div class="article-card py-4">
 
