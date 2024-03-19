@@ -197,7 +197,7 @@ def delete_blog(request, pk):
 
     return render(request, 'delete.html', {'obj':blog})
 
-def poll_page(request, item_id, thumbs_up_chosen):
+def poll_page(request, pk):
     """
     View function for managing polls, and users voting on polls.
 
@@ -214,20 +214,33 @@ def poll_page(request, item_id, thumbs_up_chosen):
 
     * Note - this functionality is not fully implemented *
     """
-    poll = get_object_or_404(Poll, pk=item_id)
+    poll = get_object_or_404(Poll, id=pk)
     user = request.user
-    already_voted = Vote.objects.filter(user=user, item=item).exists()
-    if already_voted:
-        messages.error (request, 'You have already cast a vote.')
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    all_posts = Post.new_manager.filter(category__icontains=q)
+    categories = Post.categories
+    polls = Poll.objects.all()
+    already_voted = Vote.objects.filter(user=user, poll=poll).exists()
+    
 
-    if thumbs_up_chosen:
-        item.thumbs_up_count += 1
-        Poll.objects.create(user=user, item=item, thumbs_up_chosen=True)
+    thumbs_up = request.GET.get('thumbs_up')
+    thumbs_down = request.GET.get('thumbs_down')
+
+    if thumbs_up:
+        poll.thumbs_up_count += 1
+        poll.save()
+        Vote.objects.create(user=user, poll=poll, thumbs_up_chosen=True)
+
+    elif thumbs_down:
+        poll.thumbs_down_count += 1
+        poll.save
+        Vote.objects.create(user=user, poll=poll, thumbs_down_chosen=True)
 
     else:
-        item.thumbs_down_count += 1
-        Poll.objects.create(user=user, item=item, thumbs_down=True)
+        messages.error(request, 'An error has occurred, please try again.')
 
-    return render(request, 'index.html', {'poll':poll})
+    
+
+    return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':polls})
     
 

@@ -12,4 +12,5 @@ urlpatterns = [
     path('edit-blog/<str:pk>/', views.edit_blog, name="edit-blog"),
     path('delete-blog/<str:pk>/', views.delete_blog, name="delete-blog"),
     path('<slug:post>/', views.post_page, name='post_page'),
+    path('poll/<int:pk>/', views.poll_page, name='poll_page')
 ]

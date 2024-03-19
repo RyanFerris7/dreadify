@@ -39,22 +39,19 @@
 
 <div class="poll-container container-fluid">
     {% for poll in polls %}
-    <h1>Today's Poll: {{ poll.title }}</h1>
+        <h1>Today's Poll: {{ poll.title }}</h1>
 
-    <form method="POST" action="#">
+        <form method="GET" action="{% url 'blog:poll_page' poll.id %}">
+            {% csrf_token %}
+            <button type="submit" name="thumbs_up" value="1"><i class="fa-solid fa-thumbs-up"></i></button>
+            <button type="submit" name="thumbs_down" value="1"><i class="fa-solid fa-thumbs-down"></i></button>
+        </form>
 
-        {% csrf_token %}
-
-        <button>Thumbs Up</button>
-
-        <button>Thumbs Down</button>
-
-    </form>
-
-    <h3>Thumbs Up: {{ poll.thumbs_up_count }}</h3>
-    <h3>Thumbs Down: {{ poll.thumbs_down_count }}</h3>
+        <h3>Likes: {{ poll.thumbs_up_count }}</h3>
+        <h3>Dislikes: {{ poll.thumbs_down_count }}</h3>
     {% endfor %}
 </div>
+
 
 
 <div class="article-card py-4">

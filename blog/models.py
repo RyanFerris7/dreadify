@@ -91,7 +91,7 @@ class Vote(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
-    thumbs_up = models.BooleanField(default=True)
+    thumbs_up = models.BooleanField(default=False)
     thumbs_down = models.BooleanField(default=False)
 
 
