@@ -42,6 +42,14 @@
         width: 100%;
     }
 
+    .dropdown-menu {
+        background-color: #000;
+    }
+
+    .dropdown-item {
+        color: #fff;
+    }
+
     .footer {
         bottom: 0;
     }
@@ -204,7 +212,7 @@
                                 <a class="dropdown-item" href="{% url 'blog:homepage' %}?q={{'gaming'}}">Gaming</a>
                                 <a class="dropdown-item" href="{% url 'blog:homepage' %}?q={{'film'}}">Films</a>
                                 <a class="dropdown-item" href="{% url 'blog:homepage' %}?q={{'books'}}">Books</a>
-                                <hr>
+                                <hr style="color: #fff;">
                                 <a class="dropdown-item" href="{% url 'blog:create-blog' %}">Create</a>
                             </div>
                         </div>
