@@ -10,6 +10,11 @@ from .forms import CreateBlog, CommentForm
 
 # Create your views here.#
 def login_status_check(user):
+    """
+    View function for checking login status.
+
+    Used to prevent access to certain pages if logged in.
+    """
     return not user.is_authenticated
 
 @user_passes_test(login_status_check, login_url='blog:homepage')
@@ -17,6 +22,8 @@ def login_page(request):
     """
     View function that manages user login.
     Renders the login form, and then attempts to validate credentials.
+
+    Checks login status, redirects user if already logged in.
 
     If credentials match, the user is logged in.
     If credentials are invalid, an error message is displayed. 
@@ -248,4 +255,10 @@ def poll_page(request, pk):
 
     return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':polls})
     
+def dreadify_404(request, exception):
+    """
+    View function for 404 page.
 
+    Python function to return a custom 404 page for better user experience.
+    """
+    return render(request, '404.html', status=404)
