@@ -9,6 +9,11 @@ class AuthorAdmin(admin.ModelAdmin):
 class CommentsAdmin(admin.ModelAdmin):
     list_display = ('author', 'post', 'content')
 
+class PollAdmin(admin.ModelAdmin):
+    list_display = ('title', 'thumbs_up_count', 'thumbs_down_count')
+
 admin.site.register(models.Post, AuthorAdmin)
 admin.site.register(models.Comments, CommentsAdmin)
+admin.site.register(models.Poll, PollAdmin)
+
 

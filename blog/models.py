@@ -2,10 +2,10 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.conf import settings  # Import settings module
-import os  # Import os module
+from django.conf import settings
+import os
 
-# Define the function to return the default image path
+
 def Default_Image():
     return os.path.join(settings.MEDIA_URL, 'article_images/defaultimage.jpg')
 
@@ -35,7 +35,7 @@ class Post(models.Model):
     content = models.TextField()
     status = models.CharField(max_length=10, choices=post_status, default='draft')
     image_url = models.URLField(blank=True)
-    image = models.ImageField(upload_to='article_images', null=True, default=Default_Image)  # Set default image using the function
+    image = models.ImageField(upload_to='article_images', null=True, default=Default_Image)
     objects = models.Manager()
     new_manager = NewManager()
 
@@ -61,3 +61,18 @@ class Comments(models.Model):
 
     def __str__(self):
         return self.content[:25]
+
+
+
+class Poll(models.Model):
+    title = models.CharField(max_length=250)
+    thumbs_up_count = models.IntegerField(default=0)
+    thumbs_down_count = models.IntegerField(default=0)
+
+class Vote(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
+    thumbs_up = models.BooleanField(default=True)
+    thumbs_down = models.BooleanField(default=False)
+
+
