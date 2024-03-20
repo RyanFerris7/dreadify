@@ -149,7 +149,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://8000-ryanferris7-dreadify-ehew3lys8l7.ws-eu109.gitpod.io"
 ]
 
-MEDIA_ROOT = BASE_DIR / 'media/'
+MEDIA_ROOT = BASE_DIR / '/workspace/dreadify/media/'
 MEDIA_URL = '/media/'
 
 QUILL_CONFIGS = {

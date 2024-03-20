@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 from .models import Post, Poll, Vote, Article
-from .forms import CreateBlog, CommentForm, QuillPostForm
+from .forms import CreateBlog, CommentForm, QuillPostForm, CreatePoll
 
 # Create your views here.#
 def login_status_check(user):
@@ -133,19 +133,22 @@ def post_page(request, post):
     context = {'post': post_object, 'comments': comments, 'form': form}
     return render(request, 'post.html', context)
 
-def article_page(request, article):
+@login_required(login_url='blog:login')
+def create_poll(request):
     """
-    View function for website article pages. 
+    View function for creating polls.
 
-    Uses slug of article to return specific article.
-
-    Renders article with comments, and comment form.
-    If comment form is valid, saves the comment to the article.
+    If the form is valid, the poll is saved and rendered.
     """
-    article_object = get_object_or_404(Article, slug=article, status='publish')
+    form = CreatePoll()
+    if request.method == 'POST':
+        form = CreatePoll(request.POST)
+        if form.is_valid():
+            create_poll = form.save(commit=False)
+            create_poll.save()
+            return redirect('blog:homepage')
 
-    context = {'article': article_object}
-    return render(request, 'article.html', context)
+    return render(request, 'blog_post.html', {'form' : form})
 
 @login_required(login_url='blog:login')
 def blog_post(request):
@@ -166,22 +169,6 @@ def blog_post(request):
 
     return render(request, 'blog_post.html', {'form' : form})
 
-@login_required(login_url='blog:login')
-def create_article(request):
-
-    form = QuillPostForm()
-    if request.method == 'POST':
-        form = QuillPostForm(request.POST)
-        if form.is_valid():
-            create_article = form.save(commit=False)
-            create_article.author = request.user
-            create_article.save()
-            return redirect('blog:homepage')
-
-    else:
-        messages.error(request, 'An error has occurred.')
-
-    return render(request, 'create_article.html', {'form': form})
 
 @login_required(login_url='blog:login')
 def edit_blog(request, pk):
@@ -239,6 +226,7 @@ def delete_blog(request, pk):
 
     if request.method == 'POST':
         blog.delete()
+        messages.success(request, 'The post has been deleted.')
         return redirect('blog:homepage')
 
     return render(request, 'delete.html', {'obj':blog})

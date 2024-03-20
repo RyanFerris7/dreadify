@@ -95,11 +95,11 @@
                         <div class="row g-0">
                             <div class="col-5 bg-dark height-fixed">
                                 <div class="wrapper">
-                                    {% if post.image_url %}
+                                    
                                     <a href="{{post.get_absolute_url}}">
-                                        <img class="img-fluid article-img" src="{{ post.image_url }}" alt="{{ post.title }}">
+                                        <img class="img-fluid article-img" src="{{ post.cover_picture.url }}" alt="{{ post.title }}">
                                     </a>
-                                    {% endif %}
+                                    
                                 </div>
                             </div>
                             <div class="col-7 g-3 height-fixed">
