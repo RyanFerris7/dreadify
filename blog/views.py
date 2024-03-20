@@ -96,12 +96,13 @@ def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
 
     all_posts = Post.new_manager.filter(category__icontains=q)
-    categories = Post.categories
+    all_articles = Post.new_manager.filter(category__icontains=q)
+    categories = Post.categories, Article.categories
     polls = Poll.objects.all()
 
     all_polls = Poll.objects.filter(category__icontains=q)
 
-    return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':all_polls})
+    return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':all_polls, 'articles': all_articles})
 
 
 def post_page(request, post):
@@ -155,8 +156,18 @@ def blog_post(request):
 def create_article(request):
 
     form = QuillPostForm()
+    if request.method == 'POST':
+        form = QuillPostForm(request.POST)
+        if form.is_valid():
+            create_article = form.save(commit=False)
+            create_article.author = request.user
+            create_article.save()
+            return redirect('blog:homepage')
 
-    return render(request, 'create_article.html', {'form': QuillPostForm()})
+    else:
+        messages.error(request, 'An error has occurred.')
+
+    return render(request, 'create_article.html', {'form': form})
 
 @login_required(login_url='blog:login')
 def edit_blog(request, pk):

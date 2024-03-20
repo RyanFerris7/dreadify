@@ -8,9 +8,16 @@
 </head>
 
     <div class="container mt-3">
+
+        <div class="alert alert-danger">
+            <strong>Error:</strong> {{ form.errors }}
+        </div>
+
         <div class="quill-form-overall">
-            {% csrf_token %}
             <form action="" method="POST">
+
+                {% csrf_token %}
+
                 <div class="quill-field">
                     <label for="{{ form.title.id_for_label }}">Title:</label>
                     {{ form.title }}
@@ -18,6 +25,10 @@
                 <div class="quill-field">
                     <label for="{{ form.slug.id_for_label }}">Slug:</label>
                     {{ form.slug }}
+                </div>
+                <div class="quill-field">
+                    <label for="{{ form.slug.id_for_label }}">Category:</label>
+                    {{ form.category }}
                 </div>
                 <div class="quill-field">
                     <label for="{{ form.excerpt.id_for_label }}">Excerpt:</label>
@@ -35,6 +46,9 @@
                     <label for="{{ form.content.id_for_label }}">Article Content:</label>
                     {{ form.content }}
                 </div>
+
+                <input type="submit" value="Submit">
+
             </form>
         </div>
     </div>

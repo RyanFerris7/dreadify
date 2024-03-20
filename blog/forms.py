@@ -16,5 +16,4 @@ class CommentForm(ModelForm):
 class QuillPostForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('title', 'slug', 'excerpt', 'category', 'article_image', 'article_image_url', 'content' )
-
+        fields = ('title', 'slug', 'category', 'excerpt', 'category', 'article_image', 'article_image_url', 'content' )
