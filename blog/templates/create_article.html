@@ -8,10 +8,17 @@
 </head>
 
     <div class="container">
-        <form action="" method="POST">
-            {% csrf_token %}
-            {{ form.content }}
-        </form>
+        <div class="quill-group">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.title }}
+                {{ form.slug }}
+                {{ form.excerpt }}
+                {{ form.article_image }}
+                {{ form.article_image_url }}
+                {{ form.content }}
+            </form>
+        </div>
     </div>
         
 {% endblock %}
