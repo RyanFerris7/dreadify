@@ -8,35 +8,31 @@
         <div class="col-md-8">
 
             <div class="col-12"><h1>{{post.title}}</h1></div>
+            <div class="col-12"><img src="{{ post.cover_picture.url }}" alt="{{ post.title }}" style="height: 300px; width: 50vw;"></div> 
             <div class="col-12"><h2>{{post.author}}</h2></div>
 
             {% if request.user.username == post.author.username %}
             <div class="col-12"><a href="{% url 'blog:edit-blog' pk=post.pk  %}">Edit</a></div>
             <div class="col-12"><a href="{% url 'blog:delete-blog' pk=post.pk %}">Delete</a></div>
             {% endif %}
+            <hr>
                 
             <div class="col-12"><p>{{post.content.html|safe}}</p></div>
-            {% if post.image_url %}
-            <img src="{{ post.image.url }}" alt="{{ post.title }}" style="height: 250px; width: 250px;">
-            {% endif %}
             
         </div>
         
         <div class="comments">
-
-            <h3>Share your thoughts</h3>
             <hr>
-
             <div>
-                <h3>Add a comment</h3>
+                <h3>Share Your Thoughts</h3>
                 <form method="POST" action="">
                     {% csrf_token %}
                     {{form.as_p}}
-                    <button type="Submit">Add Comment</button>
+                    <button type="Submit">Comment</button>
                 </form>
             </div>
 
-            <div>
+            <div class="container mb-3">
                 {% for comment in comments %}
                     <h4>@{{comment.author}}</h4>
                     <small>{{comment.created|timesince}}</small>
@@ -44,14 +40,9 @@
                     {% empty %}
                     <p>Get the conversation started!</p>
                 {% endfor %}
-            </div>
-            
+            </div>  
         </div>
-
-
     </div>
-
-    
 </div>
 
 {% endblock %}
