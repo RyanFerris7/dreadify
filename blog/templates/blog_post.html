@@ -2,10 +2,41 @@
 
 {% block content %}
 
-    <div class="container mt-3">
+    <div class="container mt-3 mb-3">
         <form method="POST" enctype="multipart/form-data" action="">
                 {% csrf_token %}
-                {{form.as_p}}
+
+                <div class="createblog-field mb-3">
+                    <label for="{{ post.slug.id_for_label }}">Title:</label>
+                    {{ form.title }}
+                </div>
+
+                <div class="createblog-field mb-3">
+                    <label for="{{ post.slug.id_for_label }}">Excerpt:</label>
+                    {{ form.excerpt }}
+                </div>
+
+                <div class="createblog-field mb-3">
+                    <label for="{{ post.slug.id_for_label }}">Slug:</label>
+                    {{ form.slug }}
+                </div>
+
+                <div class="createblog-field mb-3">
+                    <label for="{{ post.category.id_for_label }}">Category:</label>
+                    {{ form.category }}
+                </div>
+
+                <div class="createblog-field mb-3">
+                    <label for="{{ post.cover_picture.id_for_label }}">Article Image:</label>
+                    {{ form.cover_picture }}
+                </div>
+
+                <div class="createblog-field mb-3">
+                    <label for="{{ post.content.id_for_label }}">Enter Article Content:</label>
+                    {{ form.content }}
+                </div>
+
+                <!-- {{form.as_p}} -->
                     <input type="submit" value="Submit">
         </form>
         <div></div>

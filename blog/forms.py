@@ -6,7 +6,7 @@ from .models import Post, Comments, Article, Poll
 class CreateBlog(ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'slug', 'excerpt', 'cover_picture', 'content']
+        fields = ['title', 'slug', 'category', 'excerpt', 'cover_picture', 'content']
 
 class CommentForm(ModelForm):
     class Meta:
@@ -17,7 +17,7 @@ class CommentForm(ModelForm):
 class CreatePoll(ModelForm):
     class Meta:
         model = Poll
-        fields = ['title']
+        fields = ['title', 'category']
 
 
 class QuillPostForm(forms.ModelForm):
