@@ -159,15 +159,9 @@ QUILL_CONFIGS = {
             'syntax': True,
             'toolbar': [
                 [
-                    {'font': []},
                     {'header': []},
-                    {'align': []},
                     'bold', 'italic', 'underline', 'strike', 'blockquote',
-                    {'color': []},
-                    {'background': []},
                 ],
-                ['code-block', 'link'],
-                ['clean'],
             ]
         }
     }
