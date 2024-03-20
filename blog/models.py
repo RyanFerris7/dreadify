@@ -38,7 +38,7 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
     content = models.TextField()
-    status = models.CharField(max_length=10, choices=post_status, default='draft')
+    status = models.CharField(max_length=10, choices=post_status, default='publish')
     image_url = models.URLField()
     image = models.ImageField(upload_to='article_images', null=True, default=Default_Image)
     objects = models.Manager()
@@ -80,7 +80,7 @@ class Article(models.Model):
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     category = models.CharField(max_length=250, choices=categories, default='gaming')
     publish = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='article_posts') #was blog_posts
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='article_posts')
     content = QuillField()
     status = models.CharField(max_length=10, choices=article_status, default='publish')
     article_image_url = models.URLField()

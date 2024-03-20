@@ -153,6 +153,9 @@ def blog_post(request):
 
 @login_required(login_url='blog:login')
 def create_article(request):
+
+    form = QuillPostForm()
+
     return render(request, 'create_article.html', {'form': QuillPostForm()})
 
 @login_required(login_url='blog:login')
@@ -270,3 +273,6 @@ def dreadify_404(request, exception):
     Python function to return a custom 404 page for better user experience.
     """
     return render(request, '404.html', status=404)
+
+def QuillArticleForm(request):
+    return render(request, 'create_article.html', {'form': AltQuillArticleForm()} )

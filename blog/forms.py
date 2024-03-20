@@ -1,11 +1,12 @@
 from django.forms import ModelForm
 from django import forms
+from django_quill.forms import QuillFormField
 from .models import Post, Comments, Article
 
 class CreateBlog(ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'slug', 'excerpt', 'image_url', 'image', 'content', 'status']
+        fields = ['title', 'slug', 'excerpt', 'image_url', 'image', 'content']
 
 class CommentForm(ModelForm):
     class Meta:
@@ -16,3 +17,4 @@ class QuillPostForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = ('title', 'slug', 'excerpt', 'category', 'article_image', 'article_image_url', 'content' )
+

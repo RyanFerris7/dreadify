@@ -2,10 +2,15 @@
 
 {% block content %}
 
+
+<head>
+    {{ form.media }}
+</head>
+
     <div class="container">
         <form action="" method="POST">
             {% csrf_token %}
-            {{ form.title }}
+            {{ form.content }}
         </form>
     </div>
         
