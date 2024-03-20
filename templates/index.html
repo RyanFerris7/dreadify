@@ -90,32 +90,6 @@
                         {% endfor %}
                     </div>
 
-                    {% for article in articles %}
-                    <div class="col-12 mb-3 align-self-center height-fixed">
-                        <div class="row g-0">
-                            <div class="col-5 bg-dark height-fixed">
-                                <div class="wrapper">
-                                    {% if article.article_image_url %}
-                                    <a href="{{article.get_absolute_url}}">
-                                        <img class="img-fluid article-img" src="{{ article.image.url }}" alt="{{ article.title }}">
-                                    </a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="col-7 g-3 height-fixed">
-                                <small class="text-muted text-uppercase">{{article.category}} / {{article.publish}}</small>
-                                <h1><a class="title" href="{{article.get_absolute_url}}">{{article.title}}</a></h1>
-                                <p class="excerpt">{{article.excerpt}}</p>
-                                <!-- <p>{{article.content|truncatewords:15|safe}}</p> -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hr-div">
-                        <hr class="article-divider">
-                    </div>
-                    {% endfor %}
-
-
                     {% for post in posts %}
                     <div class="col-12 mb-3 align-self-center height-fixed">
                         <div class="row g-0">
@@ -123,7 +97,7 @@
                                 <div class="wrapper">
                                     {% if post.image_url %}
                                     <a href="{{post.get_absolute_url}}">
-                                        <img class="img-fluid article-img" src="{{ post.image.url }}" alt="{{ post.title }}">
+                                        <img class="img-fluid article-img" src="{{ post.image_url }}" alt="{{ post.title }}">
                                     </a>
                                     {% endif %}
                                 </div>
