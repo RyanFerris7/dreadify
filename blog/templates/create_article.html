@@ -8,15 +8,33 @@
 </head>
 
     <div class="container mt-3">
-        <div class="quill-group">
+        <div class="quill-form-overall">
+            {% csrf_token %}
             <form action="" method="POST">
-                {% csrf_token %}
-                {{ form.title }}
-                {{ form.slug }}
-                {{ form.excerpt }}
-                {{ form.article_image }}
-                {{ form.article_image_url }}
-                {{ form.content }}
+                <div class="quill-field">
+                    <label for="{{ form.title.id_for_label }}">Title:</label>
+                    {{ form.title }}
+                </div>
+                <div class="quill-field">
+                    <label for="{{ form.slug.id_for_label }}">Slug:</label>
+                    {{ form.slug }}
+                </div>
+                <div class="quill-field">
+                    <label for="{{ form.excerpt.id_for_label }}">Excerpt:</label>
+                    {{ form.excerpt }}
+                </div>
+                <div class="quill-field">
+                    <label for="{{ form.article_image.id_for_label }}">Main Article Image:</label>
+                    {{ form.article_image }}
+                </div>
+                <div class="quill-field">
+                    <label for="{{ form.article_image_url.id_for_label }}">Main Article Image URL:</label>
+                    {{ form.article_image_url }}
+                </div>
+                <div class="quill-field">
+                    <label for="{{ form.content.id_for_label }}">Article Content:</label>
+                    {{ form.content }}
+                </div>
             </form>
         </div>
     </div>
