@@ -13,5 +13,7 @@ urlpatterns = [
     path('edit-blog/<str:pk>/', views.edit_blog, name="edit-blog"),
     path('delete-blog/<str:pk>/', views.delete_blog, name="delete-blog"),
     path('<slug:post>/', views.post_page, name='post_page'),
+    # below code currently conflicting with above, reordering them fixes it
+    path('<slug:article>/', views.article_page, name='article_page'),
     path('poll/<int:pk>/', views.poll_page, name='poll_page')
 ]

@@ -133,6 +133,20 @@ def post_page(request, post):
     context = {'post': post_object, 'comments': comments, 'form': form}
     return render(request, 'post.html', context)
 
+def article_page(request, article):
+    """
+    View function for website article pages. 
+
+    Uses slug of article to return specific article.
+
+    Renders article with comments, and comment form.
+    If comment form is valid, saves the comment to the article.
+    """
+    article_object = get_object_or_404(Article, slug=article, status='publish')
+
+    context = {'article': article_object}
+    return render(request, 'article.html', context)
+
 @login_required(login_url='blog:login')
 def blog_post(request):
     """

@@ -37,7 +37,7 @@ class Post(models.Model):
     category = models.CharField(max_length=250, choices=categories, default='gaming')
     publish = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
-    content = models.TextField()
+    content = QuillField()
     status = models.CharField(max_length=10, choices=post_status, default='publish')
     image_url = models.URLField()
     image = models.ImageField(upload_to='article_images', null=True, default=Default_Image)
@@ -81,7 +81,7 @@ class Article(models.Model):
     category = models.CharField(max_length=250, choices=categories, default='gaming')
     publish = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='article_posts')
-    content = QuillField()
+    content = models.TextField()
     status = models.CharField(max_length=10, choices=article_status, default='publish')
     article_image_url = models.URLField()
     article_image = models.ImageField(upload_to='article_images', null=True, default=Default_Image)
@@ -90,7 +90,7 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         """Uses slug to define page url"""
-        return reverse('blog:post_page', args=[self.slug])
+        return reverse('blog:article_page', args=[self.slug])
     
     class Meta:
         """Reverses ordering, puts new articles first"""
@@ -103,6 +103,7 @@ class Article(models.Model):
 class Comments(models.Model):
     """Model for comments"""
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', default=None)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', default=None)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(max_length=250)
     created = models.DateTimeField()

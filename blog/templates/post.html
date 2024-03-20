@@ -15,7 +15,7 @@
             <div class="col-12"><a href="{% url 'blog:delete-blog' pk=post.pk %}">Delete</a></div>
             {% endif %}
                 
-            <div class="col-12"><p>{{post.content}}</p></div>
+            <div class="col-12"><p>{{post.content.html|safe}}</p></div>
             {% if post.image_url %}
             <img src="{{ post.image.url }}" alt="{{ post.title }}" style="height: 250px; width: 250px;">
             {% endif %}
