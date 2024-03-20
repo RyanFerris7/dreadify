@@ -96,7 +96,7 @@ def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
 
     all_posts = Post.new_manager.filter(category__icontains=q)
-    all_articles = Post.new_manager.filter(category__icontains=q)
+    all_articles = Article.new_manager.filter(category__icontains=q)
     categories = Post.categories, Article.categories
     polls = Poll.objects.all()
 
