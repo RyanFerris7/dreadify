@@ -43,10 +43,10 @@ def login_page(request):
         if user is not None:
             login(request, user)
             return redirect('blog:homepage')
-        
+
         else:
             messages.error(request, 'Username or Password does not exist.')
-    
+
     context = {'page':page}
     return render (request, 'login_register.html', context)
 
@@ -77,7 +77,7 @@ def register_page(request):
             user.save()
             login(request, user)
             return redirect('blog:homepage')
-        
+
         else:
             messages.error(request, 'An error has occured, please check your details.')
 
@@ -90,7 +90,6 @@ def home(request):
     Renders homepage, polls and published articles. 
     Enables article and poll sorting by category.
 
-    
     """
 
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -191,8 +190,9 @@ def edit_blog(request, pk):
     blog = Post.objects.get(id=pk)
     form = CreateBlog(instance=blog)
 
-    if request.user != Post.author:
+    if request.user != blog.author:
         messages.error(request, 'Only the author can edit this post.')
+        return redirect('blog:homepage')
 
     if request.method == 'POST':
         form = CreateBlog(request.POST, instance=blog)
@@ -221,8 +221,9 @@ def delete_blog(request, pk):
     """
     blog = Post.objects.get(id=pk)
 
-    if request.user != Post.author:
+    if request.user != blog.author:
         messages.error(request, 'Only the author can delete this post.')
+        return redirect('blog:homepage')
 
     if request.method == 'POST':
         blog.delete()
@@ -253,14 +254,14 @@ def poll_page(request, pk):
     all_posts = Post.new_manager.filter(category__icontains=q)
     categories = Post.categories
     polls = Poll.objects.all()
-    
+
     thumbs_up = request.GET.get('thumbs_up')
     thumbs_down = request.GET.get('thumbs_down')
     already_voted = Vote.objects.filter(user=user, poll=poll).exists()
 
     if already_voted:
         messages.error(request, 'You have already cast a vote in this poll.')
-    
+ 
     else:
         if thumbs_up:
             poll.thumbs_up_count += 1
@@ -275,10 +276,8 @@ def poll_page(request, pk):
         else:
             messages.error(request, 'An error has occurred, please try again.')
 
-    
-
     return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':polls})
-    
+
 def dreadify_404(request, exception):
     """
     View function for 404 page.
