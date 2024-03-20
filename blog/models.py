@@ -103,7 +103,7 @@ class Article(models.Model):
 class Comments(models.Model):
     """Model for comments"""
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', default=None)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', default=None)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', default=None, null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(max_length=250)
     created = models.DateTimeField()
