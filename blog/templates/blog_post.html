@@ -2,6 +2,12 @@
 
 {% block content %}
 
+<!-- 
+    Page for creating articles.
+    Renders each required category field. 
+    Uses QuillForm to give users more control over text formatting.
+-->
+
     <div class="container mt-3 mb-3">
         <form method="POST" enctype="multipart/form-data" action="">
                 {% csrf_token %}
@@ -36,10 +42,8 @@
                     {{ form.content }}
                 </div>
 
-                <!-- {{form.as_p}} -->
                     <input type="submit" value="Submit">
         </form>
-        <div></div>
     </div>
 
 {% endblock %}
