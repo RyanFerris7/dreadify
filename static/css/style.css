@@ -3,7 +3,6 @@
     display: block;
 }
 
-
 .nav-link {
     color: #fff !important;
     text-transform: uppercase;
@@ -18,7 +17,6 @@
     color: #DC143C !important;
     scale: 1.1;
 }
-
 
 .category-list {
     float: left;
@@ -151,6 +149,19 @@
     overflow: hidden;
 }
 
+.edit-delete {
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    transition: 0.5s ease;
+}
+.edit-delete:hover {
+    letter-spacing: 3px;
+    color: #ff0066;
+}
 /* 404 Styling */
 
 .pixel_text {
