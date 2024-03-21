@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 from django.utils.text import slugify
-from .models import Post, Poll, Vote
+from .models import Post, Poll, Vote, Comments
 from .forms import CreateBlog, CommentForm, CreatePoll
 
 # Create your views here.#
@@ -189,8 +190,6 @@ def delete_poll(request, pk):
     If the user is not the author, an error message is displayed.
     If the user is the author, an article delete option is displayed.
 
-    * Note - Still needs a message display to warn the user that this cannot be undone *
-
     After deletion, the user is returned to the homepage. 
 
     """
@@ -206,6 +205,35 @@ def delete_poll(request, pk):
         return redirect('blog:homepage')
 
     return render(request, 'delete.html', {'obj':poll})
+
+@login_required(login_url='blog:login')
+def delete_comment(request, pk):
+    """
+    View function that manages deleting comments.
+    The primary key is used to specify the comment.
+
+    A user must be logged in to access this function. 
+
+    Checks if the user is author of the comment.
+    If the user is not the author, an error message is displayed.
+    If the user is the author, a comment delete option is displayed.
+
+    After deletion, the user is returned to the homepage. 
+
+    """
+    comment = Comments.objects.get(id=pk)
+
+    if request.user != comment.author:
+        messages.error(request, 'Only the author can delete this comment.')
+        return redirect('blog:homepage')
+
+    if request.method == 'POST':
+        post_slug = comment.post.slug
+        comment.delete()
+        messages.success(request, 'The comment has been deleted.')
+        return redirect(reverse('blog:post_page', args=[post_slug]))
+
+    return render(request, 'delete.html', {'obj':comment})
 
 @login_required(login_url='blog:login')
 def blog_post(request):

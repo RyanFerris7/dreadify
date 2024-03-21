@@ -42,6 +42,9 @@
     
                 <div class="container comment-container mb-3">
                     {% for comment in comments %}
+                    {% if request.user.username == comment.author.username %}
+                    <a class="edit-delete" href="{% url 'blog:delete_comment' pk=comment.pk  %}">Delete</a>
+                    {% endif %}
                         <p class="comment-author">{{comment.author}}</p>
                         <small class="comment-time">{{comment.created|timesince}}</small>
                         <div class="row">
