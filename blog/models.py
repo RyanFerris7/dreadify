@@ -48,7 +48,7 @@ class Post(models.Model):
     def get_absolute_url(self):
         """Uses slug to define page url"""
         return reverse('blog:post_page', args=[self.slug])
-    
+
     class Meta:
         """Reverses ordering, puts new articles first"""
         ordering = ('-publish',)
@@ -92,7 +92,7 @@ class Article(models.Model):
     def get_absolute_url(self):
         """Uses slug to define page url"""
         return reverse('blog:article_page', args=[self.slug])
-    
+
     class Meta:
         """Reverses ordering, puts new articles first"""
         ordering = ('-publish',)
@@ -125,7 +125,7 @@ class Poll(models.Model):
     Model for polls.
 
     Stores the poll title, key and vote count.
-        
+
     """
 
     categories = (
@@ -142,7 +142,7 @@ class Poll(models.Model):
 class Vote(models.Model):
     """
     Model for voting.
-    
+
     Stores the users login, retrieves the poll and gives options to cast vote.
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)

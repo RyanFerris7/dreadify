@@ -147,7 +147,7 @@ def create_poll(request):
             create_poll.save()
             return redirect('blog:homepage')
 
-    return render(request, 'blog_post.html', {'form' : form})
+    return render(request, 'create_poll.html', {'form' : form})
 
 @login_required(login_url='blog:login')
 def blog_post(request):
