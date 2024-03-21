@@ -144,20 +144,21 @@
     </nav>
 
     <div class="container welcome mt-1 mb-1">
-        <small style="text-transform: uppercase;">Welcome, {{ request.user.username }}</small>
-        {% if messages %}
-        {% for message in messages %}
-        <small class="message">{{ message }}</small>
-        {% endfor %}
-        {% endif %}
+        <div class="row">
+            <div class="col text-center">
+                <small style="text-transform: uppercase;">Welcome, {{ request.user.username }}</small>
+                <br>
+                {% if messages %}
+                {% for message in messages %}
+                <small class="message">{{ message }}</small>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
     </div>
 
     <div class="body-content mt-0">
-        
         {% block content %}
-
-        
-
         {% endblock %}
     </div.body-content>
 
