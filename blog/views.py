@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
+from django.utils.text import slugify
 from .models import Post, Poll, Vote
 from .forms import CreateBlog, CommentForm, CreatePoll
 
@@ -89,17 +90,13 @@ def home(request):
     Enables article and poll sorting by category.
 
     """
-
     q = request.GET.get('q') if request.GET.get('q') != None else ''
-
     all_posts = Post.new_manager.filter(category__icontains=q)
     categories = Post.categories
     polls = Poll.objects.all()
-
     all_polls = Poll.objects.filter(category__icontains=q)
 
     return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':all_polls})
-
 
 def post_page(request, post):
     """
@@ -224,8 +221,11 @@ def blog_post(request):
         if form.is_valid():
             blog_post = form.save(commit=False)
             blog_post.author = request.user
+            blog_post.slug = slugify(blog_post.title)
             blog_post.save()
             return redirect('blog:homepage')
+        else:
+            messages.error(request, 'An error has occurred.')
 
     return render(request, 'blog_post.html', {'form' : form})
 

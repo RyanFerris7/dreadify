@@ -8,6 +8,11 @@
     Uses QuillForm to give users more control over text formatting.
 -->
 
+
+{% for message in messages %}
+<small class="message">{{ message }}</small>
+{% endfor %}
+
     <div class="container mt-3 mb-3">
         <form method="POST" enctype="multipart/form-data" action="">
                 {% csrf_token %}
@@ -20,11 +25,6 @@
                 <div class="createblog-field mb-3">
                     <label for="{{ post.slug.id_for_label }}">Excerpt:</label>
                     {{ form.excerpt }}
-                </div>
-
-                <div class="createblog-field mb-3">
-                    <label for="{{ post.slug.id_for_label }}">Slug:</label>
-                    {{ form.slug }}
                 </div>
 
                 <div class="createblog-field mb-3">

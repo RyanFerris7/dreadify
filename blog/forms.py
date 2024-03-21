@@ -6,7 +6,7 @@ from .models import Post, Comments, Poll
 class CreateBlog(ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'slug', 'category', 'excerpt', 'cover_picture', 'content']
+        fields = ['title', 'category', 'excerpt', 'cover_picture', 'content']
 
 class CommentForm(ModelForm):
     class Meta:

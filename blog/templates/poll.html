@@ -2,6 +2,13 @@
 
 {% block poll %}
 
+<!-- 
+    Template for polls.
+    Renders the poll title
+    Checks if user has already voted.
+    Displays vote options and counts.
+-->
+
 <div class="poll-container">
     <h1>{{ Poll.title }}</h1>
     {% if request.user not already_voted %}
