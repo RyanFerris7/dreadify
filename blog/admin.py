@@ -1,12 +1,7 @@
 from django.contrib import admin
 from . import models
-from .models import QuillPost
 
 # Register your models here.
-
-@admin.register(QuillPost)
-class QuillPostAdmin(admin.ModelAdmin):
-    pass
 
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'category', 'publish', 'status')
@@ -20,6 +15,6 @@ class PollAdmin(admin.ModelAdmin):
 admin.site.register(models.Post, AuthorAdmin)
 admin.site.register(models.Comments, CommentsAdmin)
 admin.site.register(models.Poll, PollAdmin)
-admin.site.register(models.Article, QuillPostAdmin)
+
 
 

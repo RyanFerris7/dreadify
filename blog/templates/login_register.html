@@ -2,64 +2,7 @@
 
 {%  block content %}
 
-<style>
-    .shape-container {
-        position: relative;
-        top: 0;
-        left: 0;
-        height: 60px;
-        width: 360px;
-        margin: 0 auto;
-    }
-
-    .shape {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        padding: 20px;
-        background-color: #ff0066;
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-        transition: clip-path 0.5s ease;
-    }
-
-    .shape:hover {
-        clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
-    }
-
-    .shape-text-join {
-        color: #fff;
-        text-transform: uppercase;
-        font-family: Arial, Helvetica, sans-serif;
-        text-decoration: none;
-        text-align: center;
-        font-weight: 900;
-        transition: scale 0.5s ease;
-    }
-
-    .shape-text-already {
-        color: #fff;
-        text-transform: uppercase;
-        font-family: Arial, Helvetica, sans-serif;
-        text-decoration: none;
-        text-align: center;
-        font-size: 18px;
-        font-weight: 900;
-        transition: scale 0.5s ease;
-    }
-
-    .shape-text-join:hover {
-        scale: 1.2;
-    }
-
-    .shape-text-already:hover {
-        scale: 1.1;
-    }
-</style>
-
 {% if page == 'login' %}
-
 <div class="container">
     <div class="row">
         <div class="col mt-3">
@@ -94,10 +37,6 @@
     </div>
 </div>
 </div>
-<div>
-</div>
-
-
 
 {% else %}
 

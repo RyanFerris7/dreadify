@@ -1,13 +1,250 @@
 /* Home Styling */
-.article-img {
-    height: 250px;
-    width: 500px;
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
-.title{
+
+.nav-link {
+    color: #fff !important;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 200;
+    font-size: 20px;
+    letter-spacing: 1px;
+    transition: 0.5s ease;
+}
+
+.nav-link:hover {
+    color: #DC143C !important;
+    scale: 1.1;
+}
+
+
+.category-list {
+    float: left;
+    text-align: center;
+    width: 100%;
+}
+
+.dropdown-menu {
+    background-color: #000;
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.footer {
+    bottom: 0;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+}
+
+.offcanvas-logo {
+    height: 50px;
+    width: 150px;
+    padding-left: 25px;
+
+}
+
+.menu-btn {
+    color: #fff;
+}
+
+.sidebar-nav-link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: #000;
+    transition: 0.5s ease;
+    font-weight: 600;
+    letter-spacing: 5px;
+}
+
+.sidebar-nav-link:hover {
+    color: #DC143C;
+    letter-spacing: 1.5px;
+}
+
+.social {
+    font-size: 2rem;
+    margin-top: 5px;
+    color: #000;
+    transition: 0.5s ease;
+}
+
+.social:hover {
+    color: #DC143C;
+    scale: 1.2;
+}
+
+.social-footer {
+    font-size: 2rem;
+    margin-top: 5px;
+    color: #fff;
+    transition: 0.5s ease;
+}
+
+.social-footer:hover {
+    color: #DC143C;
+    scale: 1.2;
+}
+
+.connect-text {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.article-img {
+    height: 300px;
+    width: 300px;
+    object-fit: fill;
+}
+
+.article-img:hover {
+    filter: contrast(125%);
+    transition: .3s ease-in-out;
+}
+
+.hr-div {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.article-divider {
+    width: 100%;
+}
+
+.title {
     text-decoration: none;
     color: #ff0066;
     font-weight: 900;
     letter-spacing: .5px;
+    line-height: 1.2;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    display: block;
+}
+
+.title:hover {
+    color: #DC143C;
+    transition: .3s ease-in-out;
+}
+
+.excerpt {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.poll-title,
+.counter {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.height-fixed {
+    height: 200px;
+    overflow: hidden;
+}
+
+/* 404 Styling */
+
+.pixel_text {
+    font-family: "Pixelify Sans", sans-serif;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 42px;
+    padding-top: 20px;
+    padding-left: 30px;
+    color: #fff;
+    background-color: #000;
+    border: 4px solid #182261;
+}
+.background-img {
+    background-image: url("https://i.kinja-img.com/image/upload/c_fill,h_675,pg_1,q_80,w_1200/prrtzdx5mxpgtlvsllzy.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 68vh;
+}
+
+/* Login / Register */
+
+.shape-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 360px;
+    margin: 0 auto;
+}
+
+.shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: #ff0066;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transition: clip-path 0.5s ease;
+}
+
+.shape:hover {
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}
+
+.shape-text-join {
+    color: #fff;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 900;
+    transition: scale 0.5s ease;
+}
+
+.shape-text-already {
+    color: #fff;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    transition: scale 0.5s ease;
+}
+
+.shape-text-join:hover {
+    scale: 1.2;
+}
+
+.shape-text-already:hover {
+    scale: 1.1;
+}
+
+/* Create Poll & Create Article */
+
+.categories {
+    font-size: 24px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Word */
+
+/* Word */
+
+/* Word */
+
+/* Word */
+
+/* Word */
+
+/* Word */
+
+/* Word */

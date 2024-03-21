@@ -57,54 +57,9 @@ class Post(models.Model):
         """For admin panel, returns legible string to make management easier"""
         return self.title
 
-class Article(models.Model):
-    """Model for articles"""
-
-    class NewManager(models.Manager):
-        """Retrieves published posts using filter"""
-        def get_queryset(self):
-            return super().get_queryset().filter(status='publish')
-
-    article_status = (
-        ('draft', 'Draft'),
-        ('publish', 'Publish')
-    )
-
-    categories = (
-        ('gaming', 'Gaming'),
-        ('film', 'Film'),
-        ('books', 'Books')
-    )
-
-    title = models.CharField(max_length=250)
-    excerpt = models.TextField(max_length=250)
-    slug = models.SlugField(max_length=250, unique_for_date='publish')
-    category = models.CharField(max_length=250, choices=categories, default='gaming')
-    publish = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='article_posts')
-    content = models.TextField()
-    status = models.CharField(max_length=10, choices=article_status, default='publish')
-    article_image_url = models.URLField()
-    article_image = models.ImageField(upload_to='article_images', null=True, default=Default_Image)
-    objects = models.Manager()
-    new_manager = NewManager()
-
-    def get_absolute_url(self):
-        """Uses slug to define page url"""
-        return reverse('blog:article_page', args=[self.slug])
-
-    class Meta:
-        """Reverses ordering, puts new articles first"""
-        ordering = ('-publish',)
-
-    def __str__(self):
-        """For admin panel, returns legible string to make management easier"""
-        return self.title
-
 class Comments(models.Model):
     """Model for comments"""
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', default=None)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', default=None, null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(max_length=250)
     created = models.DateTimeField()
@@ -150,6 +105,3 @@ class Vote(models.Model):
     poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
     thumbs_up = models.BooleanField(default=False)
     thumbs_down = models.BooleanField(default=False)
-
-class QuillPost(models.Model):
-    content = QuillField()

@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
-from .models import Post, Poll, Vote, Article
-from .forms import CreateBlog, CommentForm, QuillPostForm, CreatePoll
+from .models import Post, Poll, Vote
+from .forms import CreateBlog, CommentForm, CreatePoll
 
 # Create your views here.#
 def login_status_check(user):
@@ -71,8 +71,6 @@ def register_page(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            #Creates object in memory, could use this to 
-            #check manage entered details if needed
             user = form.save(commit=False)
             user.save()
             login(request, user)
@@ -95,13 +93,12 @@ def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
 
     all_posts = Post.new_manager.filter(category__icontains=q)
-    all_articles = Article.new_manager.filter(category__icontains=q)
-    categories = Post.categories, Article.categories
+    categories = Post.categories
     polls = Poll.objects.all()
 
     all_polls = Poll.objects.filter(category__icontains=q)
 
-    return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':all_polls, 'articles': all_articles})
+    return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':all_polls})
 
 
 def post_page(request, post):
@@ -212,8 +209,6 @@ def delete_poll(request, pk):
         return redirect('blog:homepage')
 
     return render(request, 'delete.html', {'obj':poll})
-
-# gap to be removed
 
 @login_required(login_url='blog:login')
 def blog_post(request):
@@ -351,6 +346,3 @@ def dreadify_404(request, exception):
     Python function to return a custom 404 page for better user experience.
     """
     return render(request, '404.html', status=404)
-
-def QuillArticleForm(request):
-    return render(request, 'create_article.html', {'form': AltQuillArticleForm()} )
