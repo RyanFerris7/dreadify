@@ -77,6 +77,12 @@
                         <small class="message">{{ message }}</small>
                         {% endfor %}
                         {% endif %}
+
+                        {% if request.user.username == poll.author.username %}
+                        <div class="col-12"><a href="{% url 'blog:edit_poll' pk=poll.pk  %}">Edit</a></div>
+                        <div class="col-12"><a href="{% url 'blog:delete_poll' pk=poll.pk %}">Delete</a></div>
+                        {% endif %}
+
                         <h1 class="poll-title">{{ poll.title }}</h1>
                         <form method="GET" action="{% url 'blog:poll_page' poll.id %}">
                             {% csrf_token %}

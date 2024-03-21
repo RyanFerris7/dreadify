@@ -13,12 +13,10 @@ class CommentForm(ModelForm):
         model = Comments
         fields = ['content']
 
-
 class CreatePoll(ModelForm):
     class Meta:
         model = Poll
         fields = ['title', 'category']
-
 
 class QuillPostForm(forms.ModelForm):
     class Meta:

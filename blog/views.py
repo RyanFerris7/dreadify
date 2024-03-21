@@ -144,10 +144,76 @@ def create_poll(request):
         form = CreatePoll(request.POST)
         if form.is_valid():
             create_poll = form.save(commit=False)
+            create_poll.author = request.user
             create_poll.save()
             return redirect('blog:homepage')
 
     return render(request, 'create_poll.html', {'form' : form})
+
+@login_required(login_url='blog:login')
+def edit_poll(request, pk):
+    """
+    View function for editing poll.
+
+    The primary key of the poll is used to specify the poll being edited.
+
+    A user must be logged in to access this function.
+
+    Checks if the user attempting to edit the poll is the author. 
+    If the user is not the author, an error message is displayed.
+    If the user is the author, an article edit option is displayed.
+
+    Retrieves current content from the article and allows changes to be made. 
+
+    If the article edit form is valid, the article is updated and rendered.
+    The user is then returned to the homepage.
+    """
+    poll = Poll.objects.get(id=pk)
+    form = CreatePoll(instance=poll)
+
+    if request.user != poll.author:
+        messages.error(request, 'Only the author can edit this poll.')
+        return redirect('blog:homepage')
+
+    if request.method == 'POST':
+        form = CreatePoll(request.POST, instance=poll)
+        if form.is_valid():
+            form.save()
+            return redirect('blog:homepage')
+
+    return render(request, 'create_poll.html', {'form' : form})
+
+@login_required(login_url='blog:login')
+def delete_poll(request, pk):
+    """
+    View function that manages deleting articles.
+    The primary key of the article is used to specify the article being deleted.
+
+    A user must be logged in to access this function. 
+
+    Checks if the user is author of the article.
+    If the user is not the author, an error message is displayed.
+    If the user is the author, an article delete option is displayed.
+
+    * Note - Still needs a message display to warn the user that this cannot be undone *
+
+    After deletion, the user is returned to the homepage. 
+
+    """
+    poll = Poll.objects.get(id=pk)
+
+    if request.user != poll.author:
+        messages.error(request, 'Only the author can delete this poll.')
+        return redirect('blog:homepage')
+
+    if request.method == 'POST':
+        poll.delete()
+        messages.success(request, 'The post has been deleted.')
+        return redirect('blog:homepage')
+
+    return render(request, 'delete.html', {'obj':poll})
+
+# gap to be removed
 
 @login_required(login_url='blog:login')
 def blog_post(request):
