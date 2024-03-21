@@ -61,7 +61,7 @@ class Comments(models.Model):
     """Model for comments"""
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', default=None)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField(max_length=250)
+    content = QuillField(max_length=250)
     created = models.DateTimeField()
     updated = models.DateTimeField()
 
@@ -69,10 +69,6 @@ class Comments(models.Model):
         """Reverses comment ordering, also corrects issue with auto plurilisation of apps"""
         ordering = ('-created', '-updated')
         verbose_name_plural = "Comments"
-
-    def __str__(self):
-        """For admin panel, returns legible string to make management easier"""
-        return self.content[:25]
 
 
 class Poll(models.Model):

@@ -143,9 +143,8 @@
         </div>
     </nav>
 
-    <div class="container welcome mt-3 mb-3">
+    <div class="container welcome mt-1 mb-1">
         <small style="text-transform: uppercase;">Welcome, {{ request.user.username }}</small>
-        <hr>
         {% if messages %}
         {% for message in messages %}
         <small class="message">{{ message }}</small>
@@ -153,7 +152,7 @@
         {% endif %}
     </div>
 
-    <div class="body-content">
+    <div class="body-content mt-0">
         
         {% block content %}
 

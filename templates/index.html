@@ -26,14 +26,9 @@
                                     {{ poll.thumbs_down_count }}</i></button>
 
                             {% if request.user.username == poll.author.username %}
-                            <button class="btn btn-secondary">
-                                    <a class="edit-delete text-white" href="{% url 'blog:edit_poll' pk=poll.pk  %}">Edit</a>
-                            </button>
-                            
-                            <button class="btn btn-secondary">
-                                    <a class="edit-delete text-white" href="{% url 'blog:delete_poll' pk=poll.pk  %}">Delete</a>
-                            </button>
-                            
+                                <a class="edit-delete" href="{% url 'blog:edit_poll' pk=poll.pk  %}">Edit</a>
+                                <small>|</small>
+                                <a class="edit-delete" href="{% url 'blog:delete_poll' pk=poll.pk  %}">Delete</a>
                             {% endif %}
                         </form>
                         <hr>

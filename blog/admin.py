@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.forms import Textarea
 from . import models
 
 # Register your models here.
@@ -15,6 +16,3 @@ class PollAdmin(admin.ModelAdmin):
 admin.site.register(models.Post, AuthorAdmin)
 admin.site.register(models.Comments, CommentsAdmin)
 admin.site.register(models.Poll, PollAdmin)
-
-
-
