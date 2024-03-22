@@ -119,14 +119,14 @@
         </div>
     </nav>
     <!-- Welcome and Messages -->
-    <div class="container welcome mt-1 mb-1">
+    <div class="container welcome mt-2">
         <div class="row">
             <div class="col text-center">
-                <small style="text-transform: uppercase;">Welcome, {{ request.user.username }}</small>
+                <p class="welcome">Welcome {{ request.user.username }} </p>
                 <br>
                 {% if messages %}
                 {% for message in messages %}
-                <small class="message" style="display: block;">{{ message }}</small>
+                <p class="alert">{{ message }}</p>
                 {% endfor %}
                 {% endif %}
             </div>

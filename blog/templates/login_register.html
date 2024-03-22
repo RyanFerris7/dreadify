@@ -18,8 +18,9 @@
                     <input type="text" name="username" class="form-control mx-auto" placeholder="Enter Username">
                     <label>Password:</label>
                     <input type="password" name="password" class="form-control" placeholder="Enter Password">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn logreg-button">Login</button>
                 </form>
+                <hr>
                 <br>
                 <div class="shape-container mx-auto">
                     <div class="row">
@@ -46,8 +47,9 @@
                 <form method="POST" action="">
                     {% csrf_token %}
                     {{form.as_p}}
-                    <input class="btn btn-primary" type="submit" value="Register">
+                    <input class="btn logreg-button" type="submit" value="Register">
                 </form>
+                <hr>
                 <br>
                 <div class="shape-container mx-auto">
                     <div class="row">
