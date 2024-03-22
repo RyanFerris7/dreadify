@@ -104,6 +104,13 @@ def home(request):
 
     return render(request, 'index.html', {'posts' : all_posts, 'shuffled_articles': shuffled_articles, 'categories' : categories, 'polls':all_polls})
 
+def about(request):
+    """
+    View function for about page.
+    Details website and how to use.
+    """
+    return render(request, 'about.html')
+
 def post_page(request, post):
     """
     View function for website article pages. 
@@ -119,13 +126,17 @@ def post_page(request, post):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = post_object
-            comment.author = request.user
-            comment.created = timezone.now()
-            comment.updated = timezone.now()
-            comment.save()
-            return redirect('blog:post_page', post=post)
+            if request.user.is_authenticated:
+
+                comment = form.save(commit=False)
+                comment.post = post_object
+                comment.author = request.user
+                comment.created = timezone.now()
+                comment.updated = timezone.now()
+                comment.save()
+                return redirect('blog:post_page', post=post)
+            else:
+                messages.error(request, 'You must be logged in to comment.')
     else: 
         form = CommentForm() 
 

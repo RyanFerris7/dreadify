@@ -17,9 +17,9 @@
             <a class="edit-delete" href="{% url 'blog:delete-blog' pk=post.pk  %}">Delete</a>
             {% endif %}
             <hr>
-            <div class="col-12"><h1 class="article-title text-center">{{post.title}}</h1></div>
-            <div class="col-12"><img src="{{ post.cover_picture.url }}" alt="{{ post.title }}" style="height: 300px; width: 50vw;"></div> 
-            <div class="col-12 mt-1"><h4>{{post.author}}</h4></div>
+            <div class="col-12"><h1 class="text-center article-post-title">{{post.title}}</h1></div> <br>
+            <div class="col-12"><img class="article-post-image" src="{{ post.cover_picture.url }}" alt="{{ post.title }}"></div> 
+            <div class="col-12 mt-1"><h4 class="article-post-author">{{post.author}}</h4></div>
             <hr>
             <div class="col-12"><p>{{post.content.html|safe}}</p></div>
 
@@ -29,14 +29,14 @@
                     <h3 class="text-center">Share Your Thoughts!</h3>
                     <form method="POST" action="">
                         {% csrf_token %}
-    
                         {{form.content}}
                         <br>
-    
-    
-    
-                        
-                        <button class="btn btn-dark" type="Submit">Comment</button>
+                        <div class="row">
+                            <div class="col text-center">
+                                <button class="btn btn-dark comment-button" type="Submit">Comment</button>
+                            </div>
+                        </div>
+                        </div>
                     </form>
                 </div>
     
@@ -52,9 +52,12 @@
                                 <p class="comment-content">{{comment.content.html|safe}}</p>
                             </div>
                         </div>
-                        
                         {% empty %}
-                        <p>Get the conversation started!</p>
+                        <div class="row">
+                            <div class="col text-center mt-3">
+                                <p class="get-started">Get the conversation started!</p>
+                            </div>
+                        </div>
                     {% endfor %}
                 </div>  
             </div>

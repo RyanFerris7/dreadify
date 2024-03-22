@@ -347,6 +347,34 @@
     z-index: -1;
     opacity: 1;
   }
+  /* About Page */
+  .about-header {
+    text-align:start;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .about-header h1 {
+    display: inline-block;
+    background-color: #ff0066;
+    color: white;
+    font-size: 24px;
+    padding: 10px 20px;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+  }
+  .about {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+  }
+
+  .about-logo {
+    height: 300px;
+    width: 600px;
+    filter: drop-shadow(0px 4px 8px rgba(255, 0, 102, 0.5));
+  }
 /* 404 Styling */
 
 .pixel_text {
@@ -390,8 +418,6 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     transition: clip-path 0.5s ease;
 }
-
-
 
 .shape:hover {
     clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
@@ -450,8 +476,41 @@
 .comment-content {
     margin-top: -5px;
 }
-/* Word */
-
+/* Article Page */
+.article-post-image {
+    height: auto;
+    width: 50vw;
+}
+.article-post-title {
+    display: inline-block;
+    background-color: #ff0066;
+    color: white;
+    font-size: 24px;
+    padding: 10px 20px;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+}
+.article-post-author,
+.comment-button {
+    display: inline-block;
+    background-color: #000;
+    color: white;
+    font-size: 24px;
+    padding: 10px 20px;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+}
+.get-started {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: large;
+    text-transform: uppercase;
+    color: #ff0066;
+}
 /* Word */
 
 /* Word */

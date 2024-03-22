@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <img class="about-logo mx-auto" src="https://res.cloudinary.com/dortt45t8/image/upload/v1711107415/hg90m3m12loqyx2lgjwn.png" alt="dreadify">
+        <div class="about-header">
+            <h1>What is Dreadify?</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col about">
+            <p class="about">A horror focused news website. </p>
+            <p class="about">The aim of us Dreadites is to bring you a mixture of the latest news from the world of horror and also reflections on horror media of the past.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col about-header">
+            <h1 class="about">What does Dreadify have to offer?</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col about">
+            <ul>
+                <li class="about">Horror News</li>
+                <li class="about">Opinion Pieces</li>
+                <li class="about">Community Polls</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col about-header">
+            <a href="{% url 'blog:register' %}"><h1>Join Us!</h1></a>              
+        </div>
+    </div>
+    <div class="row"></div>
+        <div class="col about">
+            <p class="about">Become a Dreadite today!</p>
+            <p class="about">By logging in to Dreadify you can create articles and polls, and interact with the community.</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
