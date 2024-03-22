@@ -26,16 +26,18 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100 body-colour">
-    <nav class="navbar bg-black">
-        <div class="container">
-            <div class="col-12 col-lg-6 offset-lg-3 py-2 d-flex justify-content-center align-items-center">
+    <div class="container-fluid">
+        <div class="row bg-black">
+            <div class="col-12 col-lg-6 offset-lg-3 py-2 d-flex justify-content-center align-items-center bg-black">
                 <a class="logo" href="{% url 'blog:homepage' %}">
                     <img class="logo img-fluid"
-                        src="https://raw.githubusercontent.com/RyanFerris7/dreadify/main/assets/images/dreadify_logo.png"
+                        src="https://res.cloudinary.com/dortt45t8/image/upload/v1710963010/vrppa5w7eksoqkv2vpuj.png"
                         alt="DREADIFY" style="text-align: center;">
                 </a>
             </div>
         </div>
+    </div>
+    <nav class="navbar bg-black">
         <div class="container">
             <div class="category-list">
                 <div class="row">
@@ -97,10 +99,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col justify-content-center">
                         <a class="nav-link" href="{% url 'blog:homepage' %}">Home</a>
                     </div>
-                    <div class="col category-dropdwon">
+                    <div class="col category-dropdown">
                         <div class="dropdown">
                             <button class="btn dropdown-toggle nav-link" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
@@ -151,8 +153,7 @@
                         alt="dreadify">
                 </div>
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 mx-auto content-warning-title" id="staticBackdropLabel">"WE HAVE SUCH
-                        SIGHTS TO SHOW YOU."</h1>
+                    <h1 class="modal-title fs-5 mx-auto content-warning-title" id="staticBackdropLabel">"WE HAVE SUCH SIGHTS TO SHOW YOU."</h1>
                 </div>
                 <div class="modal-body">
                     This website contains sights which could be unsuitable for work.<br><br>
