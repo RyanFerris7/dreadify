@@ -67,7 +67,7 @@
                         <div class="col-7 g-3 height-fixed">
                             <small class="text-muted text-uppercase">{{post.category}} / {{post.publish}}</small>
                             <h1><a class="title" href="{{post.get_absolute_url}}">{{post.title}}</a></h1>
-                            <p class="excerpt">{{post.excerpt}}</p>
+                            <p class="excerpt">{{post.excerpt|truncatewords:15}}</p>
                         </div>
                     </div>
                 </div>
