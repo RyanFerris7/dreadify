@@ -167,6 +167,9 @@
     letter-spacing: 3px;
     color: #ff0066;
 }
+.carousel-control-next, .carousel-control-prev {
+    background-color: #ff0066;
+}
 /* 404 Styling */
 
 .pixel_text {
