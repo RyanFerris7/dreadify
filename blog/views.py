@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.urls import reverse
+from django.db import transaction
 from random import shuffle
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -382,6 +384,30 @@ def poll_page(request, pk):
             messages.error(request, 'An error has occurred, please try again.')
 
     return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':polls})
+
+@login_required(login_url='blog:login')
+def delete_account(request):
+    """
+    View function for deleting user account.
+    Allows users to delete their own account and associated content. 
+    """
+    if request.method == 'POST':
+        user = request.user
+        
+        if user != request.user:
+            messages.error(request, 'You can only delete your own account.')
+        
+        if user == request.user:
+            with transaction.atomic():
+                Post.objects.filter(author=user).delete()
+                Comments.objects.filter(author=user).delete()
+                Poll.objects.filter(author=user).delete()
+                user.delete()
+                logout(request)
+                messages.success(request, 'Your account has been deleted.')
+                return redirect('blog:homepage')
+
+    return render(request, 'delete_account.html')
 
 def dreadify_404(request, exception):
     """

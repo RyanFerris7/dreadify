@@ -17,5 +17,6 @@ urlpatterns = [
     path('delete-blog/<str:pk>/', views.delete_blog, name="delete-blog"),
     path('<slug:post>/', views.post_page, name='post_page'),
     path('poll/<int:pk>/', views.poll_page, name='poll_page'),
-    path('about', views.about, name='about')
+    path('about', views.about, name='about'),
+    path('delete_account', views.delete_account, name='delete_account')
 ]

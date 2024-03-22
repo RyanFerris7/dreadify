@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- 
+    Page for deleting user accounts and content.
+    Displays a warning, and deletes if conditions are met.
+-->
+<div class="container mt-3 mb-3">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="about-header">
+            <h1>Are you sure you want to delete {{request.user}}?</p>
+        </div>
+        <p class="delete-warning">Your account and all associated data will be deleted.</small>
+        <p class="delete-warning">This action cannot be reversed.</small>
+        <br>
+        <br>
+        <input class="btn logreg-button" type="submit" value="Confirm" />
+    </form>
+</div>
+</div>
+{% endblock %}

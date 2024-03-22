@@ -13,8 +13,8 @@
             <a class="edit-delete" href="{% url 'blog:delete-blog' pk=post.pk  %}">Delete</a>
             {% endif %}
             <hr>
-            <div class="col-12">
-                <h1 class="text-center article-post-title">{{post.title}}</h1>
+            <div class="col-12 text-center mx-auto">
+                <h1 class="text-center article-post-title mx-auto">{{post.title}}</h1>
             </div> <br>
             <div class="col-12"><img class="article-post-image" src="{{ post.cover_picture.url }}"
                     alt="{{ post.title }}"></div>
