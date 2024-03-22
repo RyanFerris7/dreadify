@@ -39,9 +39,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
     content = QuillField()
     status = models.CharField(max_length=10, choices=post_status, default='publish')
-    image_url = models.URLField()
     cover_picture = CloudinaryField('article-image', null=True)
-    image = models.ImageField(upload_to='article_images', null=True, default=Default_Image)
     objects = models.Manager()
     new_manager = NewManager()
 
