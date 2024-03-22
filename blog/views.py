@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.urls import reverse
+from random import shuffle
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -89,6 +90,7 @@ def home(request):
 
     Renders homepage, polls and published articles. 
     Enables article and poll sorting by category.
+    Enables article shuffling, for further reading.
 
     """
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -96,8 +98,10 @@ def home(request):
     categories = Post.categories
     polls = Poll.objects.all()
     all_polls = Poll.objects.filter(category__icontains=q)
+    shuffled_articles = list(all_posts)
+    shuffle(shuffled_articles)
 
-    return render(request, 'index.html', {'posts' : all_posts, 'categories' : categories, 'polls':all_polls})
+    return render(request, 'index.html', {'posts' : all_posts, 'shuffled_articles': shuffled_articles, 'categories' : categories, 'polls':all_polls})
 
 def post_page(request, post):
     """

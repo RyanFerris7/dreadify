@@ -1,6 +1,6 @@
 /* Home Styling */
-.body {
-    background-color: red;
+.body-colour {
+    background-color: #f7f7ff;
 }
 .dropdown:hover .dropdown-menu {
     display: block;

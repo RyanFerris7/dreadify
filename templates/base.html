@@ -24,7 +24,7 @@
     
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 body-colour">
 
     <nav class="navbar bg-black">
         <div class="container">
@@ -150,7 +150,7 @@
                 <br>
                 {% if messages %}
                 {% for message in messages %}
-                <small class="message">{{ message }}</small>
+                <small class="message" style="display: block;">{{ message }}</small>
                 {% endfor %}
                 {% endif %}
             </div>
@@ -185,9 +185,7 @@
 
 </body>
 
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
 
 </html>

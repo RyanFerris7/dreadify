@@ -6,17 +6,31 @@
     Index for website.
     Iterates through and displays polls and articles.
 -->
+<style>
+.carousel-caption {
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: larger;
+    letter-spacing: 2px;
+    background-color: rgba(255, 0, 102, 0.8); /* Black background with 50% opacity */
+    width: 100%; 
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+}
+.carousel-indicators {
+    display: none;
+}
+</style>
 
 <div class="article-card py-4">
 
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 col-xxl-6 mx-auto">
-                <div class="row">
                     <div class="poll-container">
-
                         {% for poll in polls %}
-
                         <h1 class="poll-title">{{ poll.title }}</h1>
                         <form method="GET" action="{% url 'blog:poll_page' poll.id %}">
                             {% csrf_token %}
@@ -60,6 +74,38 @@
                         <hr class="article-divider">
                     </div>
                     {% endfor %}
+                    <div class="row">
+                        <div class="col mx-auto">
+                            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    {% for post in shuffled_articles %}
+                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+                                    {% endfor %}
+                                </div>
+                                
+                                <div class="carousel-inner custom-carousel">
+                                    {% for post in shuffled_articles %}
+                                    <a href="{{ post.get_absolute_url }}" class="carousel-item {% if forloop.first %}active{% endif %}">
+                                        <img src="{{ post.cover_picture.url }}" class="text-center" style="height:300px; width: 100%; object-fit: cover;" alt="{{ post.title }}">
+                                        <div class="carousel-caption-wrapper">
+                                            <div class="carousel-caption text-center text-white">
+                                                <div class="carousel-title">{{ post.title }}</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                                                 
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
