@@ -1,122 +1,139 @@
 {% extends "base.html" %}
-
 {% block content %}
-
 <!-- 
     Index for website.
     Iterates through and displays polls and articles.
 -->
+
 <style>
-.carousel-caption {
-    font-family: Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: larger;
-    letter-spacing: 2px;
-    background-color: rgba(255, 0, 102, 0.8); /* Black background with 50% opacity */
-    width: 100%; 
-    position: absolute; 
-    bottom: 0; 
-    left: 0; 
-}
-.carousel-indicators {
-    display: none;
-}
-.carousel-control-next-icon, .carousel-control-prev-icon {
-    background-size: 100% 100%;
-    height: 50px;
-    width: 50px;
-    text-shadow: 0px 4px 0px rgba(0, 0, 0, 0.3);
-    filter: invert(50%);
-}
+ 
+    .section-header {
+      text-align: center;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .section-header h1 {
+      display: inline-block;
+      background-color: #ff0066;
+      color: white;
+      padding: 10px 20px;
+      margin: 0;
+      text-transform: uppercase;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+    }
+    
+    .section-header hr {
+      position: absolute;
+      width: 100%;
+      border: none;
+      height: 6px;
+      background-color: #ff0066;
+      top: 50%;
+      margin-top: -1px; 
+      z-index: -1;
+      opacity: 1;
+    }
 </style>
-
 <div class="article-card py-4">
-
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 col-xxl-6 mx-auto">
+                <div class="section-header">
+                    <h1>Articles</h1>
+                    <hr>
+                </div>
+                <!-- Carousel-->
+                <div class="col mb-3 mx-auto">
+                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            {% for post in shuffled_articles|slice:3 %}
+                            <button type="button" data-bs-target="#carouselExampleCaptions"
+                                data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"
+                                aria-current="true" {% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+                            {% endfor %}
+                        </div>
+                        <div class="carousel-inner custom-carousel">
+                            {% for post in shuffled_articles|slice:3 %}
+                            <a href="{{ post.get_absolute_url }}"
+                                class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <img src="{{ post.cover_picture.url }}" class="text-center"
+                                    style="height:300px; width: 100%; object-fit: cover;" alt="{{ post.title }}">
+                                <div class="carousel-caption-wrapper">
+                                    <div class="carousel-caption text-center text-white">
+                                        <div class="carousel-title">{{ post.title }}</div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Articles -->
+                {% for post in posts %}
+                <div class="col-12 mb-3 align-self-center height-fixed">
+                    <div class="row g-0">
+                        <div class="col-5 bg-dark height-fixed">
+                            <div class="wrapper">
+                                <a href="{{post.get_absolute_url}}">
+                                    <img class="img-fluid article-img" src="{{ post.cover_picture.url }}"
+                                        alt="{{ post.title }}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-7 g-3 height-fixed">
+                            <small class="text-muted text-uppercase">{{post.category}} / {{post.publish}}</small>
+                            <h1><a class="title" href="{{post.get_absolute_url}}">{{post.title}}</a></h1>
+                            <p class="excerpt">{{post.excerpt}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-div">
+                    <hr class="article-divider">
+                </div>
+                {% endfor %}
+                <!-- Polls -->
+                <div class="section-header">
+                    <h1>Latest Polls</h1>
+                    <hr>
+                </div>
+                <div class="row">
                     <div class="poll-container">
                         {% for poll in polls %}
                         <h1 class="poll-title">{{ poll.title }}</h1>
                         <form method="GET" action="{% url 'blog:poll_page' poll.id %}">
                             {% csrf_token %}
-                            <button class="btn btn-primary" type="submit" name="thumbs_up" value="1"><i class="fa-solid fa-thumbs-up"> :
+                            <button class="btn btn-primary" type="submit" name="thumbs_up" value="1"><i
+                                    class="fa-solid fa-thumbs-up"> :
                                     {{ poll.thumbs_up_count }}</i></button>
-                            <button class="btn btn-danger" type="submit" name="thumbs_down" value="1"><i class="fa-solid fa-thumbs-down"> :
+                            <button class="btn btn-danger" type="submit" name="thumbs_down" value="1"><i
+                                    class="fa-solid fa-thumbs-down"> :
                                     {{ poll.thumbs_down_count }}</i></button>
 
                             {% if request.user.username == poll.author.username %}
-                                <a class="edit-delete" href="{% url 'blog:edit_poll' pk=poll.pk  %}">Edit</a>
-                                <small>|</small>
-                                <a class="edit-delete" href="{% url 'blog:delete_poll' pk=poll.pk  %}">Delete</a>
+                            <a class="edit-delete" href="{% url 'blog:edit_poll' pk=poll.pk  %}">Edit</a>
+                            <small>|</small>
+                            <a class="edit-delete" href="{% url 'blog:delete_poll' pk=poll.pk  %}">Delete</a>
                             {% endif %}
                         </form>
                         <hr>
                         <br>
                         {% endfor %}
                     </div>
-
-                    {% for post in posts %}
-                    <div class="col-12 mb-3 align-self-center height-fixed">
-                        <div class="row g-0">
-                            <div class="col-5 bg-dark height-fixed">
-                                <div class="wrapper">
-                                    
-                                    <a href="{{post.get_absolute_url}}">
-                                        <img class="img-fluid article-img" src="{{ post.cover_picture.url }}" alt="{{ post.title }}">
-                                    </a>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-7 g-3 height-fixed">
-                                <small class="text-muted text-uppercase">{{post.category}} / {{post.publish}}</small>
-                                <h1><a class="title" href="{{post.get_absolute_url}}">{{post.title}}</a></h1>
-                                <p class="excerpt">{{post.excerpt}}</p>
-                                <!-- <p>{{post.content|truncatewords:15|safe}}</p> -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hr-div">
-                        <hr class="article-divider">
-                    </div>
-                    {% endfor %}
-                    <div class="row">
-                        <div class="col mx-auto">
-                            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    {% for post in shuffled_articles|slice:3 %}
-                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
-                                    {% endfor %}
-                                </div>
-                                
-                                <div class="carousel-inner custom-carousel">
-                                    {% for post in shuffled_articles|slice:3 %}
-                                    <a href="{{ post.get_absolute_url }}" class="carousel-item {% if forloop.first %}active{% endif %}">
-                                        <img src="{{ post.cover_picture.url }}" class="text-center" style="height:300px; width: 100%; object-fit: cover;" alt="{{ post.title }}">
-                                        <div class="carousel-caption-wrapper">
-                                            <div class="carousel-caption text-center text-white">
-                                                <div class="carousel-title">{{ post.title }}</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    {% endfor %}
-                                </div>
-                                                 
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                        </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}

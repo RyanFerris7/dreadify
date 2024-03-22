@@ -20,14 +20,19 @@
                     <input type="password" name="password" class="form-control" placeholder="Enter Password">
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
-                <div class="shape-container">
-                    <div class="shape">
-                        <span>
-                            <a class="shape-text" href="{% url 'blog:register' %}">
-                                <h2 class="shape-text-join">Join Us</h2>
-                            </a>
-                        </span>
-                    </div>
+                <br>
+                <div class="shape-container mx-auto">
+                    <div class="row">
+                        <div class="col-8 mx-auto">
+                            <div class="shape">
+                                <span>
+                                    <a class="shape-text" href="{% url 'blog:register' %}">
+                                        <h2 class="shape-text-join">Join Us</h2>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -39,21 +44,22 @@
         <div class="row">
             <div class="col-8 mt-3 mb-3 mx-auto">
                 <form method="POST" action="">
-
                     {% csrf_token %}
-        
                     {{form.as_p}}
-        
-                    <input type="submit" value="Register">
+                    <input class="btn btn-primary" type="submit" value="Register">
                 </form>
-        
-                <div class="shape-container">
-                    <div class="shape">
-                        <span>
-                            <a href="{% url 'blog:login' %}">
-                                <h2 class="shape-text-already">Already Joined Us?</h2>
-                            </a>
-                        </span>
+                <br>
+                <div class="shape-container mx-auto">
+                    <div class="row">
+                        <div class="col-8 mx-auto">
+                            <div class="shape">
+                                <span>
+                                    <a href="{% url 'blog:login' %}">
+                                        <h2 class="shape-text-already">Already Joined Us?</h2>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -61,7 +67,5 @@
     </div>
 </div>
 </div>
-
 {% endif %}
-
 {% endblock %}

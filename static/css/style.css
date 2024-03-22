@@ -167,9 +167,92 @@
     letter-spacing: 3px;
     color: #ff0066;
 }
-.carousel-control-next, .carousel-control-prev {
+.carousel-caption {
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: larger;
+    letter-spacing: 2px;
+    background-color: rgba(255, 0, 102, 0.8); /* Black background with 50% opacity */
+    width: 100%; 
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+}
+.carousel-indicators {
+    display: none;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    background-size: 100% 100%;
+    height: 50px;
+    width: 50px;
+    text-shadow: 0px 4px 0px rgba(0, 0, 0, 0.3);
+    filter: invert(50%);
+}
+.modal-content {
     background-color: #ff0066;
 }
+.modal-body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    color: #fff;
+}
+.content-warning-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    color: #fff;
+}
+.dreadify_logo_white {
+    height: 100px;
+    width: 200px;
+}
+.btn-modal-close {
+    background-color: #ff0066;
+    color: #fff;
+    border: solid 1px #fff;
+    transition: 0.5s ease;
+}
+.btn-modal-close:hover {
+    border: solid 1px #000;
+}
+.show-me {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    transition: 0.5s ease;
+}
+.show-me:hover {
+    letter-spacing: 1px;
+}
+.section-header {
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .section-header h1 {
+    display: inline-block;
+    background-color: #ff0066;
+    color: white;
+    padding: 10px 20px;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+  }
+  
+  .section-header hr {
+    position: absolute;
+    width: 100%;
+    border: none;
+    height: 6px;
+    background-color: #ff0066;
+    top: 50%;
+    margin-top: -1px; 
+    z-index: -1;
+    opacity: 1;
+  }
 /* 404 Styling */
 
 .pixel_text {
@@ -213,6 +296,8 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     transition: clip-path 0.5s ease;
 }
+
+
 
 .shape:hover {
     clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);

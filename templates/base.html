@@ -1,13 +1,10 @@
 {% load static %}
-
 <!-- 
     Base for the entire website.
     Each page extends from this base.
 -->
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,11 +16,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/fbc0935dc2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/static/css/style.css">
-
     {{ form.media }}
-    
 </head>
-
 <body class="d-flex flex-column min-vh-100 body-colour">
 
     <nav class="navbar bg-black">
@@ -40,13 +34,11 @@
         <div class="container">
             <div class="category-list">
                 <div class="row">
-
                     <div class="col">
                         <a class="btn nav-link" data-bs-toggle="offcanvas" href="#sidebar" role="button"
                             aria-controls="sidebar_reveal">
                             <i class="fa-solid fa-bars"></i>
                         </a>
-
                         <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar"
                             aria-labelledby="sidebar_reveal">
                             <div class="offcanvas-header">
@@ -61,61 +53,46 @@
                                     <a class="sidebar-nav-link" href="{% url 'blog:homepage' %}">Home</a>
                                     <hr>
                                     <br>
-
                                     <a class="sidebar-nav-link" href="#">About</a>
                                     <hr>
                                     <br>
-
                                     <a class="sidebar-nav-link" href="{% url 'blog:create-blog' %}">Write Article</a>
                                     <hr>
                                     <br>
-
                                     <a class="sidebar-nav-link" href="{% url 'blog:create_poll' %}">Create Poll</a>
                                     <hr>
                                     <br>
-
-                                    <a class="sidebar-nav-link"
-                                        href="{% url 'blog:homepage' %}?q={{'gaming'}}">Gaming</a>
+                                    <a class="sidebar-nav-link" href="{% url 'blog:homepage' %}?q={{'gaming'}}">Gaming</a>
                                     <hr>
                                     <br>
-
                                     <a class="sidebar-nav-link" href="{% url 'blog:homepage' %}?q={{'film'}}">Film</a>
                                     <hr>
                                     <br>
-
                                     <a class="sidebar-nav-link" href="{% url 'blog:homepage' %}?q={{'books'}}">Books</a>
                                     <hr>
                                     <br>
-
                                     {% if request.user.is_authenticated %}
                                     <a class="sidebar-nav-link" href="{% url 'blog:logout' %}">Logout</a>
                                     <hr>
                                     <br>
-
                                     {% else %}
                                     <a class="sidebar-nav-link" href="{% url 'blog:login' %}">Login</a>
                                     <hr>
                                     <br>
-
                                     {% endif %}
-
                                     <div class="sidebar-footer">
                                         <small class="connect-text">Connect With Us</small>
                                         <br>
-                                        <a href="https://github.com/RyanFerris7/dreadify" target="_blank"><i
-                                                class="fa-brands fa-github social"></i>
+                                        <a href="https://github.com/RyanFerris7/dreadify" target="_blank"><i class="fa-brands fa-github social"></i>
                                         </a>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="col">
                         <a class="nav-link" href="{% url 'blog:homepage' %}">Home</a>
                     </div>
-
                     <div class="col category-dropdwon">
                         <div class="dropdown">
                             <button class="btn dropdown-toggle nav-link" type="button" id="dropdownMenuButton"
@@ -130,7 +107,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col">
                         {% if request.user.is_authenticated %}
                         <a class="nav-link" href="{% url 'blog:logout' %}">Logout</a>
@@ -142,7 +118,7 @@
             </div>
         </div>
     </nav>
-
+    <!-- Welcome and Messages -->
     <div class="container welcome mt-1 mb-1">
         <div class="row">
             <div class="col text-center">
@@ -156,13 +132,33 @@
             </div>
         </div>
     </div>
-
+  <!-- Modal -->
+  {% if not user_authenticated %}
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-image mt-3 mx-auto">
+            <img class="dreadify_logo_white" src="https://res.cloudinary.com/dortt45t8/image/upload/v1711107415/hg90m3m12loqyx2lgjwn.png" alt="dreadify">
+        </div>
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 mx-auto content-warning-title" id="staticBackdropLabel">"WE HAVE SUCH SIGHTS TO SHOW YOU."</h1>
+        </div>
+        <div class="modal-body">
+          This website contains sights which could be unsuitable for work.<br><br>
+          If you wish to proceed, click below. 
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-modal-close mx-auto" type="button" class="btn btn-secondary" data-bs-dismiss="modal"><span class="show-me">Show Me</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
     <div class="body-content mt-0">
         {% block content %}
         {% endblock %}
     </div.body-content>
     </div>
-
     <footer class="footer bg-black text-center mt-auto">
         <div class="container-fluid">
             <br>
@@ -182,11 +178,9 @@
         </div>
         <br>
     </footer>
-
-
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
+<script src="/static/js/script.js"></script>
 </html>

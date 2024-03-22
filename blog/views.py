@@ -100,6 +100,7 @@ def home(request):
     all_polls = Poll.objects.filter(category__icontains=q)
     shuffled_articles = list(all_posts)
     shuffle(shuffled_articles)
+    user_authenticated = request.user.is_authenticated
 
     return render(request, 'index.html', {'posts' : all_posts, 'shuffled_articles': shuffled_articles, 'categories' : categories, 'polls':all_polls})
 
