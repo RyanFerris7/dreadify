@@ -219,7 +219,6 @@
     }
 }
 
-
 .article-img {
     height: 300px;
     width: 300px;
@@ -227,8 +226,8 @@
 }
 
 .article-img:hover {
-    filter: contrast(125%);
-    transition: .3s ease-in-out;
+    filter: contrast(140%);
+    transition: .5s ease;
 }
 
 .hr-div {
@@ -313,7 +312,13 @@
 .carousel-indicators {
     display: none;
 }
+#carouselExampleCaptions {
+    transition: 0.5s ease;
+}
 
+#carouselExampleCaptions:hover {
+    filter: contrast(125%);
+}
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
     background-size: 100% 100%;
@@ -525,9 +530,10 @@
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     text-align: center;
-    font-size: 18px;
+    padding:0 10px;
     font-weight: 900;
     transition: scale 0.5s ease;
+    margin-bottom: 20px;
 }
 
 .shape-text-join:hover {
@@ -536,6 +542,10 @@
 
 .shape-text-already:hover {
     scale: 1.1;
+}
+
+.logreg-container {
+    width: 50vw;
 }
 
 /* Create Poll & Create Article */

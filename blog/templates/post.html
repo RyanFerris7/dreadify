@@ -1,14 +1,10 @@
 {% extends "base.html" %}
-
 {% block content %}
-
 <!-- 
     Article page.
     Renders all article content, article comments and comment form.
 -->
-
 <div class="container">
-
     <div class="row justify-content-md-center pt-5">
         <div class="col-md-8">
             {% if request.user.username == post.author.username %}
@@ -17,11 +13,18 @@
             <a class="edit-delete" href="{% url 'blog:delete-blog' pk=post.pk  %}">Delete</a>
             {% endif %}
             <hr>
-            <div class="col-12"><h1 class="text-center article-post-title">{{post.title}}</h1></div> <br>
-            <div class="col-12"><img class="article-post-image" src="{{ post.cover_picture.url }}" alt="{{ post.title }}"></div> 
-            <div class="col-12 mt-1"><h4 class="article-post-author">{{post.author}}</h4></div>
+            <div class="col-12">
+                <h1 class="text-center article-post-title">{{post.title}}</h1>
+            </div> <br>
+            <div class="col-12"><img class="article-post-image" src="{{ post.cover_picture.url }}"
+                    alt="{{ post.title }}"></div>
+            <div class="col-12 mt-1">
+                <h4 class="article-post-author">{{post.author}}</h4>
+            </div>
             <hr>
-            <div class="col-12"><p>{{post.content.html|safe}}</p></div>
+            <div class="col-12">
+                <p>{{post.content.html|safe}}</p>
+            </div>
 
             <div class="comments">
                 <hr>
@@ -36,34 +39,31 @@
                                 <button class="btn btn-dark comment-button" type="Submit">Comment</button>
                             </div>
                         </div>
-                        </div>
-                    </form>
                 </div>
-    
-                <div class="container comment-container mb-3">
-                    {% for comment in comments %}
-                    {% if request.user.username == comment.author.username %}
-                    <a class="edit-delete" href="{% url 'blog:delete_comment' pk=comment.pk  %}">Delete</a>
-                    {% endif %}
-                        <p class="comment-author">{{comment.author}}</p>
-                        <small class="comment-time">{{comment.created|timesince}}</small>
-                        <div class="row">
-                            <div class="col">
-                                <p class="comment-content">{{comment.content.html|safe}}</p>
-                            </div>
-                        </div>
-                        {% empty %}
-                        <div class="row">
-                            <div class="col text-center mt-3">
-                                <p class="get-started">Get the conversation started!</p>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>  
+                </form>
+            </div>
+            <div class="container comment-container mb-3">
+                {% for comment in comments %}
+                {% if request.user.username == comment.author.username %}
+                <a class="edit-delete" href="{% url 'blog:delete_comment' pk=comment.pk  %}">Delete</a>
+                {% endif %}
+                <p class="comment-author">{{comment.author}}</p>
+                <small class="comment-time">{{comment.created|timesince}}</small>
+                <div class="row">
+                    <div class="col">
+                        <p class="comment-content">{{comment.content.html|safe}}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="row">
+                    <div class="col text-center mt-3">
+                        <p class="get-started">Get the conversation started!</p>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
 </div>
-
+</div>
 {% endblock %}
-

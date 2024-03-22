@@ -1,25 +1,21 @@
 {% extends "base.html" %}
-
 {% block content %}
-
 <!-- 
     Page for creating polls.
     Renders the poll title and category choices.
 -->
-
-    <div class="container mt-3">
-        <h1>Poll</h1>
-        <small>Please input your the title and category of your poll below.</small>
-        <form method="POST" enctype="form-data" action="">
-            {% csrf_token %}
-            <input class="form-control" name="title" placeholder="Poll Title" value="{{ form.title.value }}">
-            <br>
-            <div class="categories text-center">
-                {{ form.category }}
-            </div>
-            <br>
-            <input class="btn btn-dark" type="submit" value="Submit">
-        </form>
-    </div>
-
+<div class="container mt-3">
+    <h1>Poll</h1>
+    <small>Please input your the title and category of your poll below.</small>
+    <form method="POST" enctype="form-data" action="">
+        {% csrf_token %}
+        <input class="form-control" name="title" placeholder="Poll Title" value="{{ form.title.value }}">
+        <br>
+        <div class="categories text-center">
+            {{ form.category }}
+        </div>
+        <br>
+        <input class="btn btn-dark" type="submit" value="Submit">
+    </form>
+</div>
 {% endblock %}
