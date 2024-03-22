@@ -100,6 +100,81 @@
     letter-spacing: 1.5px;
 }
 
+.banner-title {
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 3.32vw;
+    transition: 0.5s ease;
+ }
+ .banner-subtitle {
+    margin-top: -30px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 2.75vw;
+    transition: 0.5s ease;
+ }
+ .horror {
+    color: #ff0066;
+ }
+ 
+ @media screen and (max-width: 768px) {
+    .banner-title {
+        font-size: 4vw; 
+    }
+    
+    .banner-subtitle {
+        padding-top: 5px;
+        font-size: 3.3vw;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .banner-title {
+        font-size: 4.5vw; /* Adjusted font size for screens up to 576px width */
+    }
+    
+    .banner-subtitle {
+        padding-top: 5px;
+        font-size: 3.7vw; /* Adjusted font size for screens up to 576px width */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .banner-title {
+        font-size: 4.5vw; /* Adjusted font size for screens up to 480px width */
+    }
+    
+    .banner-subtitle {
+        padding-top: 5px;
+        font-size: 3.7vw; /* Adjusted font size for screens up to 480px width */
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .banner-title {
+        font-size: 6vw; /* Adjusted font size for screens up to 375px width */
+    }
+    
+    .banner-subtitle {
+        padding-top: 8px;
+        font-size: 5vw; /* Adjusted font size for screens up to 375px width */
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .banner-title {
+        font-size: 6vw; /* Adjusted font size for screens up to 320px width */
+    }
+    
+    .banner-subtitle {
+        padding-top: 5px;
+        font-size: 5vw; /* Adjusted font size for screens up to 320px width */
+    }
+}
+
+
 .article-img {
     height: 300px;
     width: 300px;
