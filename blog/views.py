@@ -150,7 +150,7 @@ def create_poll(request):
 
     If the form is valid, the poll is saved and rendered.
     """
-    form = CreatePoll()
+    form = CreatePoll(initial={'title':''})
     if request.method == 'POST':
         form = CreatePoll(request.POST)
         if form.is_valid():
@@ -259,7 +259,7 @@ def blog_post(request):
     Creates article object in memory, adds logged in user to it.
     If the form is valid, the article is saved and rendered.
     """
-    form = CreateBlog()
+    form = CreateBlog(initial={'title':'', 'excerpt':''})
     if request.method == 'POST':
         form = CreateBlog(request.POST, request.FILES)
         if form.is_valid():

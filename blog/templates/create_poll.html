@@ -5,8 +5,8 @@
     Renders the poll title and category choices.
 -->
 <div class="container mt-3">
-    <h1>Poll</h1>
-    <small>Please input your the title and category of your poll below.</small>
+    <h2 class="post-label">Poll</h2>
+    <small class="post-label">Please input your the title and category of your poll below.</small>
     <form method="POST" enctype="form-data" action="">
         {% csrf_token %}
         <input class="form-control" name="title" placeholder="Poll Title" value="{{ form.title.value }}">
@@ -15,7 +15,7 @@
             {{ form.category }}
         </div>
         <br>
-        <input class="btn btn-dark" type="submit" value="Submit">
+        <input class="btn logreg-button" type="submit" value="Submit">
     </form>
 </div>
 {% endblock %}

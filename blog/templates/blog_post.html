@@ -8,30 +8,30 @@
 {% for message in messages %}
 <small class="message">{{ message }}</small>
 {% endfor %}
-<div class="container mt-3 mb-3">
-    <form method="POST" enctype="multipart/form-data" action="">
-        {% csrf_token %}
-        <div class="createblog-field mb-3">
-            <label for="{{ post.slug.id_for_label }}">Title:</label>
-            {{ form.title }}
-        </div>
-        <div class="createblog-field mb-3">
-            <label for="{{ post.slug.id_for_label }}">Excerpt:</label>
-            {{ form.excerpt }}
-        </div>
-        <div class="createblog-field mb-3">
-            <label for="{{ post.category.id_for_label }}">Category:</label>
-            {{ form.category }}
-        </div>
-        <div class="createblog-field mb-3">
-            <label for="{{ post.cover_picture.id_for_label }}">Article Image:</label>
-            {{ form.cover_picture }}
-        </div>
-        <div class="createblog-field mb-3">
-            <label for="{{ post.content.id_for_label }}">Enter Article Content:</label>
-            {{ form.content }}
-        </div>
-        <input class="btn btn-primary" type="submit" value="Submit">
-    </form>
-</div>
+    <div class="container mt-3 mb-3">
+        <form method="POST" enctype="multipart/form-data" action="">
+                {% csrf_token %}
+                <div class="createblog-field mb-3">
+                    <label class="post-label" for="{{ post.slug.id_for_label }}"><p class="text-label">Title :</label>
+                    <input type="text" class="form-control" name="title" placeholder="Article Title" value="{{ form.title.value }}">
+                </div>
+                <div class="createblog-field mb-3">
+                    <label class="post-label" for="{{ post.slug.id_for_label }}"><p class="text-label">Excerpt :</label>
+                    <input type="text" class="form-control" name="excerpt" placeholder="Article Excerpt" value="{{ form.excerpt.value }}">
+                </div>
+                <div class="createblog-field mb-3">
+                    <label class="post-label" for="{{ post.category.id_for_label }}"><p class="text-label">Category :</label>
+                    {{ form.category }}
+                </div>
+                <div class="createblog-field mb-3">
+                    <label class="post-label" for="{{ post.cover_picture.id_for_label }}"><p class="text-label">Article Image :</label>
+                    {{ form.cover_picture }}
+                </div>
+                <div class="createblog-field mb-3">
+                    <label class="post-label" for="{{ post.content.id_for_label }}"><p class="text-label">Enter Article Content :</p></label>
+                    {{ form.content }}
+                </div>
+                    <input class="btn logreg-button" type="submit" value="Submit">
+        </form>
+    </div>
 {% endblock %}
