@@ -8,23 +8,17 @@
 -->
 
 {% if page == 'login' %}
-<div class="container">
+<div class="container mx-auto">
     <div class="row">
-        <div class="col mt-3">
-
-            <div class="container">
+        <div class="col-8 mt-3 mx-auto">
+            <div class="container  ">
                 <form method="POST" action="">
-
                     {% csrf_token %}
-
                     <label>Username:</label>
-                    <input type="text" name="username" class="form-control" placeholder="Enter Username">
-
+                    <input type="text" name="username" class="form-control mx-auto" placeholder="Enter Username">
                     <label>Password:</label>
                     <input type="password" name="password" class="form-control" placeholder="Enter Password">
-
                     <button type="submit" class="btn btn-primary">Login</button>
-
                 </form>
                 <div class="shape-container">
                     <div class="shape">
@@ -35,20 +29,15 @@
                         </span>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
 </div>
-</div>
-
 {% else %}
-
 <div>
     <div class="container">
         <div class="row">
-            <div class="col mt-3 mb-3">
+            <div class="col-8 mt-3 mb-3 mx-auto">
                 <form method="POST" action="">
 
                     {% csrf_token %}
