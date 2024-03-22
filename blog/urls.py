@@ -19,4 +19,5 @@ urlpatterns = [
     path('poll/<int:pk>/', views.poll_page, name='poll_page'),
     path('about', views.about, name='about'),
     path('delete_account', views.delete_account, name='delete_account')
+    
 ]

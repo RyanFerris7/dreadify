@@ -148,26 +148,22 @@
 @media screen and (max-width: 4000px) {
     .banner-title {
         font-size: 1.2vw;
-        /* Adjusted font size for screens up to 576px width */
     }
 
     .banner-subtitle {
         padding-top: 5px;
         font-size: 1vw;
-        /* Adjusted font size for screens up to 576px width */
     }
 }
 
 @media screen and (max-width: 2000px) {
     .banner-title {
         font-size: 2.4vw;
-        /* Adjusted font size for screens up to 576px width */
     }
 
     .banner-subtitle {
         padding-top: 5px;
         font-size: 2vw;
-        /* Adjusted font size for screens up to 576px width */
     }
 }
 
@@ -185,52 +181,44 @@
 @media screen and (max-width: 576px) {
     .banner-title {
         font-size: 4.5vw;
-        /* Adjusted font size for screens up to 576px width */
     }
 
     .banner-subtitle {
         padding-top: 5px;
         font-size: 3.7vw;
-        /* Adjusted font size for screens up to 576px width */
     }
 }
 
 @media screen and (max-width: 480px) {
     .banner-title {
         font-size: 4.5vw;
-        /* Adjusted font size for screens up to 480px width */
     }
 
     .banner-subtitle {
         padding-top: 5px;
         font-size: 3.7vw;
-        /* Adjusted font size for screens up to 480px width */
     }
 }
 
 @media screen and (max-width: 375px) {
     .banner-title {
         font-size: 6vw;
-        /* Adjusted font size for screens up to 375px width */
     }
 
     .banner-subtitle {
         padding-top: 8px;
         font-size: 5vw;
-        /* Adjusted font size for screens up to 375px width */
     }
 }
 
 @media screen and (max-width: 320px) {
     .banner-title {
         font-size: 6vw;
-        /* Adjusted font size for screens up to 320px width */
     }
 
     .banner-subtitle {
         padding-top: 5px;
         font-size: 5vw;
-        /* Adjusted font size for screens up to 320px width */
     }
 }
 
@@ -469,23 +457,25 @@
 /* 404 Styling */
 
 .pixel_text {
+    position: absolute;
     font-family: "Pixelify Sans", sans-serif;
     text-transform: uppercase;
     font-weight: 100;
-    font-size: 42px;
-    padding-top: 20px;
-    padding-left: 30px;
+    font-size: 1.8rem;
+    padding: 10px;
     color: #fff;
     background-color: #000;
     border: 4px solid #182261;
 }
 
 .background-img {
-    background-image: url("https://i.kinja-img.com/image/upload/c_fill,h_675,pg_1,q_80,w_1200/prrtzdx5mxpgtlvsllzy.jpg");
+    background-image: url("https://res.cloudinary.com/dortt45t8/image/upload/v1711145372/mrdreadite-scene_jkianr.gif");
     background-size: cover;
+    background-color: #000;
     background-position: center;
+    background-attachment: fixed;
     background-repeat: no-repeat;
-    min-height: 68vh;
+    min-height: 70vh;
 }
 
 /* Login / Register */
