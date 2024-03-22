@@ -6,13 +6,23 @@
     Page for deleting articles and polls.
     Displays a warning, and deletes if conditions are met.
 -->
+<style>
+    .delete-text {
+        color: #fff;
+        text-decoration: none;
+    }
+</style>
 <div class="container mt-3 mb-3">
     <form method="POST" action="">
         {% csrf_token %}
         <p>Are you sure you want to delete {{obj.title}}?</p>
-        <input type="submit" value="Confirm" />
-        <button type="button" class="btn btn-dark"><a href="{{request.META.HTTP_REFERER}}">Go Back</a></button>
+        <small>This action cannot be reversed.</small>
+        <br>
+        <br>
+        <input class="btn btn-danger" type="submit" value="Confirm" />
+        <button type="button" class="btn btn-dark"><a class="delete-text" href="{{request.META.HTTP_REFERER}}">Go Back</a></button>
     </form>
+</div>
 </div>
 
 {% endblock %}
