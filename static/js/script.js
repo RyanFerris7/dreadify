@@ -11,26 +11,22 @@ if (!localStorage.getItem('modalShown')) {
 // Auto resizes the footer if the content doesn't fill a page 
 window.addEventListener('load', function() {
     positionFooter();
-  });
-  
-  window.addEventListener('resize', function() {
+});
+
+window.addEventListener('resize', function() {
     positionFooter();
-  });
-  
-  function positionFooter() {
-    var wrapper = document.querySelector('.wrapper');
+});
+
+function positionFooter() {
     var footer = document.querySelector('.footer');
-  
-    var footerHeight = footer.offsetHeight;
-    var wrapperHeight = wrapper.offsetHeight;
-  
-    if (wrapperHeight > window.innerHeight - footerHeight) {
-      wrapper.style.height = 'auto';
-      footer.style.position = 'static';
+    var windowHeight = window.innerHeight;
+    var bodyHeight = document.body.clientHeight;
+
+    if (bodyHeight < windowHeight) {
+        footer.style.position = 'fixed';
+        footer.style.bottom = '0';
+        footer.style.width = '100%';
     } else {
-      wrapper.style.height = '100vh';
-      footer.style.position = 'fixed';
-      footer.style.bottom = '0';
-      footer.style.width = '100%';
+        footer.style.position = 'static';
     }
-  }
+}
