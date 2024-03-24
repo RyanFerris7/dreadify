@@ -7,7 +7,7 @@
 <div class="container mt-3">
     <h2 class="post-label">Poll</h2>
     <small class="post-label">Please input your the title and category of your poll below.</small>
-    <form method="POST" enctype="form-data" action="">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <input class="form-control" name="title" placeholder="Poll Title" value="{{ form.title.value }}">
         <br>
