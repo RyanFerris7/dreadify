@@ -5,16 +5,20 @@
     Displays a warning, and deletes if conditions are met.
 -->
 <div class="container mt-3 mb-3">
-    <form method="POST" action="">
+    <form method="POST">
         {% csrf_token %}
-        <p>Are you sure you want to delete {{obj.title}}?</p>
+        <p>Are you sure you want to delete {{ obj.title }}?</p>
         <small>This action cannot be reversed.</small>
         <br>
         <br>
-        <input class="btn btn-danger" type="submit" value="Confirm" />
-        <button type="button" class="btn btn-dark"><a class="delete-text" href="{{request.META.HTTP_REFERER}}">Go
-                Back</a></button>
+        <input class="btn btn-danger" type="submit" value="Confirm">
+        <button class="btn btn-dark" type="button" onclick="denyDelete()">Go Back</button>
     </form>
 </div>
-</div>
+
+<script>
+    function denyDelete() {
+        window.history.back();
+    }
+</script>
 {% endblock %}

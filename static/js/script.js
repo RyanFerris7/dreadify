@@ -4,3 +4,8 @@ if (!localStorage.getItem('modalShown')) {
     myModal.show();
     localStorage.setItem('modalShown', true);
 }
+
+// Return function for when users choose not to delete something 
+function denyDelete() {
+    window.history.back();
+}
