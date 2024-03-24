@@ -11,9 +11,9 @@
             <div class="container">
                 <form method="POST" action="/login/">
                     {% csrf_token %}
-                    <label>Username:</label>
+                    <label class="article-post-title mb-3">Username</label>
                     <input type="text" name="username" class="form-control mx-auto" placeholder="Enter Username">
-                    <label>Password:</label>
+                    <label class="article-post-title mb-3 mt-3">Password</label>
                     <input type="password" name="password" class="form-control" placeholder="Enter Password">
                     <button type="submit" class="btn logreg-button">Login</button>
                 </form>
@@ -35,7 +35,6 @@
             </div>
         </div>
     </div>
-</div>
 {% else %}
 <div>
     <div class="container">
@@ -43,7 +42,18 @@
             <div class="col-8 mt-3 mb-3 mx-auto">
                 <form method="POST" action="/register/">
                     {% csrf_token %}
-                    {{form.as_p}}
+                    <label for="id_username" class="article-post-title mb-3">Username</label>
+                    <p class="about">This will be visible on your created articles and comments.</p>
+                    <input type="text" name="username" class="form-control mx-auto" maxlength="150" autocapitalize="none" autocomplete="username" autofocus required id="id_username" placeholder="Enter Username">
+                    <br>
+                    <label for="id_password1" class="article-post-title mb-3">Password</label>
+                    <p class="about">Your password can’t be too similar to your other personal information.</p>
+                    <p class="about">Your password must contain at least 8 characters.</p>
+                    <p class="about">Your password can’t be entirely numeric.</p>
+                    <input type="password" name="password1" class="form-control" autocomplete="new-password" required id="id_password1" placeholder="Enter Password">
+                    <label for="id_password2" class="article-post-title mb-3 mt-3">Confirm Password</label>
+                    <input type="password" name="password2" class="form-control" autocomplete="new-password" required id="id_password2" placeholder="Re-enter Your Password">
+
                     <input class="btn logreg-button" type="submit" value="Register">
                 </form>
                 <hr>

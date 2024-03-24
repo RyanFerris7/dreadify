@@ -1,7 +1,30 @@
 /* Home Styling */
-.body-colour {
-    background-color: #f7f7ff;
+.body, html {
+    height: 100%;
+    margin: 0;
 }
+
+.wrapper {
+    position: relative;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+}
+
+.social-footer {
+    font-size: 2rem;
+    margin-top: 5px;
+    color: #fff;
+    transition: 0.5s ease;
+}
+
+.social-footer:hover {
+    color: #DC143C;
+    scale: 1.2;
+}
+
 
 .welcome,
 .alert {
@@ -39,7 +62,6 @@
     }
 }
 
-
 .nav-link:hover {
     color: #DC143C !important;
     scale: 1.1;
@@ -57,15 +79,6 @@
 
 .dropdown-item {
     color: #fff;
-}
-
-.footer {
-    bottom: 0;
-}
-
-.footer-logo {
-    height: 50px;
-    width: auto;
 }
 
 .offcanvas-logo {
@@ -103,18 +116,6 @@
 }
 
 .social:hover {
-    color: #DC143C;
-    scale: 1.2;
-}
-
-.social-footer {
-    font-size: 2rem;
-    margin-top: 5px;
-    color: #fff;
-    transition: 0.5s ease;
-}
-
-.social-footer:hover {
     color: #DC143C;
     scale: 1.2;
 }
@@ -305,7 +306,6 @@
     font-size: larger;
     letter-spacing: 2px;
     background-color: rgba(255, 0, 102, 0.8);
-    /* Black background with 50% opacity */
     width: 100%;
     position: absolute;
     bottom: 0;
