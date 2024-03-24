@@ -9,7 +9,7 @@
 <div class="poll-container">
     <h1>{{ Poll.title }}</h1>
     {% if request.user not already_voted %}
-    <form method="POST" action="#">
+    <form method="POST">
         {% csrf_token %}
         <button>Thumbs Up</button>
         <button>Thumbs Down</button>

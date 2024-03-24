@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{%  block content %}
+{% block content %}
 <!-- 
     Register and login page.
     Checks for the correct form to render.
@@ -8,8 +8,8 @@
 <div class="container mx-auto">
     <div class="row">
         <div class="col-8 mt-3 mx-auto">
-            <div class="container  ">
-                <form method="POST" action="">
+            <div class="container">
+                <form method="POST" action="/login/">
                     {% csrf_token %}
                     <label>Username:</label>
                     <input type="text" name="username" class="form-control mx-auto" placeholder="Enter Username">
@@ -21,11 +21,11 @@
                 <br>
                 <div class="shape-container logreg-container mx-auto">
                     <div class="row">
-                        <div class="col-8 mx-auto">
+                        <div class="col-8 mx-auto text-center">
                             <div class="shape">
                                 <span>
-                                    <a class="shape-text" href="{% url 'blog:register' %}">
-                                        <h2 class="shape-text-join">Join Us</h2>
+                                    <a class="shape-text-join shape-text-join" href="/register/">
+                                        Join Us
                                     </a>
                                 </span>
                             </div>
@@ -41,7 +41,7 @@
     <div class="container">
         <div class="row">
             <div class="col-8 mt-3 mb-3 mx-auto">
-                <form method="POST" action="">
+                <form method="POST" action="/register/">
                     {% csrf_token %}
                     {{form.as_p}}
                     <input class="btn logreg-button" type="submit" value="Register">
@@ -53,8 +53,8 @@
                         <div class="col mx-auto mb-3 text-center">
                             <div class="shape">
                                 <span>
-                                    <a href="{% url 'blog:login' %}">
-                                        <h2 class="shape-text-already">Or Login</h2>
+                                    <a class="shape-text-already shape-text-already" href="/login/">
+                                        Or Login
                                     </a>
                                 </span>
                             </div>
