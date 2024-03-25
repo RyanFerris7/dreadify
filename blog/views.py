@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.db import transaction
 from random import shuffle
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
@@ -103,8 +104,16 @@ def home(request):
     shuffled_articles = list(all_posts)
     shuffle(shuffled_articles)
     user_authenticated = request.user.is_authenticated
+    paginator = Paginator(all_posts, 5)
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts= paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
 
-    return render(request, 'index.html', {'posts' : all_posts, 'shuffled_articles': shuffled_articles, 'categories' : categories, 'polls':all_polls})
+    return render(request, 'index.html', {'posts' : posts, 'shuffled_articles': shuffled_articles, 'categories' : categories, 'polls':all_polls})
 
 def about(request):
     """

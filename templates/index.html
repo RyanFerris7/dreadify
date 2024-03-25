@@ -26,12 +26,13 @@
                             {% for post in shuffled_articles|slice:3 %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                 <a href="{{ post.get_absolute_url }}">
-                                    <img class="article-index-image" src="{{ post.cover_picture.url }}" class="d-block w-100"
-                                        style="height:300px; width: 100%; object-fit: cover;" alt="{{ post.title }}">
-                                        <div class="d-md-block">
-                                            <h5 class="carousel-caption">{{ post.title }}</h5>
-                                        </div>
-                                    </a>
+                                    <img class="article-index-image" src="{{ post.cover_picture.url }}"
+                                        class="d-block w-100" style="height:300px; width: 100%; object-fit: cover;"
+                                        alt="{{ post.title }}">
+                                    <div class="d-md-block">
+                                        <h5 class="carousel-caption">{{ post.title }}</h5>
+                                    </div>
+                                </a>
                             </div>
                             {% endfor %}
                         </div>
@@ -69,6 +70,26 @@
                         <hr class="article-divider">
                     </div>
                     {% endfor %}
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="row mx-auto text-center">
+                            <div class="col mb-3">
+                                <span class="pagination-links">
+                                    {% if posts.has_previous %}
+                                    <span class="article-post-author">{{ posts.number }} of {{ posts.paginator.num_pages }}.</span>
+                                    <br>
+                                    <a class="btn logreg-button mx-auto" href="?page=1">First</a>
+                                    <a class="btn logreg-button mx-auto" href="?page={{ posts.previous_page_number }}">Previous</a>
+                                    {% endif %}
+                                    {% if posts.has_next %}
+                                    <a class="btn logreg-button mx-auto" href="?page={{ posts.next_page_number }}">Next</a>
+                                    <a class="btn logreg-button mx-auto" href="?page={{ posts.paginator.num_pages }}">Final</a>
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="article-divider">
                     <!-- Polls -->
                     <div class="section-header">
                         <h1>Latest Polls</h1>
