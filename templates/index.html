@@ -16,19 +16,22 @@
                     <h1>Articles</h1>
                     <hr>
                 </div>
-                <!-- Carousel-->
+                <!-- 
+                    Carousel
+                    Inline style used to override default sizing without use of !important 
+                -->
                 <div class="col mb-3 mx-auto">
                     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             {% for post in shuffled_articles|slice:3 %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                 <a href="{{ post.get_absolute_url }}">
-                                    <img src="{{ post.cover_picture.url }}" class="d-block w-100"
+                                    <img class="article-index-image" src="{{ post.cover_picture.url }}" class="d-block w-100"
                                         style="height:300px; width: 100%; object-fit: cover;" alt="{{ post.title }}">
-                                </a>
-                                <div class="d-md-block">
-                                    <h5 class="carousel-caption">{{ post.title }}</h5>
-                                </div>
+                                        <div class="d-md-block">
+                                            <h5 class="carousel-caption">{{ post.title }}</h5>
+                                        </div>
+                                    </a>
                             </div>
                             {% endfor %}
                         </div>
@@ -99,4 +102,4 @@
         </div>
     </div>
 </div>
-    {% endblock %}
+{% endblock %}
