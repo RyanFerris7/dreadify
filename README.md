@@ -637,7 +637,7 @@ All elements of the website are comfortably viewable on screen sizes as small as
 
 ### Bugs
 
-All (*known*) bugs have been resolved in time for submission.
+1. Images are not updating when articles are edited. 
 
 ---
 
