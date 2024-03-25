@@ -190,6 +190,14 @@ As a developer, I must document the process of testing and validation. and delet
 
 ---
 
+## The Scope Plane 
+
+Responsive design for screens as small as 320px.
+
+CRUD functionality.
+
+---
+
 ## The Structure Plane
 
 ### Features
