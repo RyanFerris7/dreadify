@@ -12,6 +12,7 @@ def Default_Image():
     """Provides default image for articles"""
     return os.path.join(settings.MEDIA_URL, 'article_images/defaultimage.jpg')
 
+
 class Post(models.Model):
     """Model for articles"""
 
@@ -34,11 +35,14 @@ class Post(models.Model):
     title = models.CharField(max_length=250)
     excerpt = models.TextField(max_length=250, null=True)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
-    category = models.CharField(max_length=250, choices=categories, default='gaming')
+    category = models.CharField(max_length=250, choices=categories,
+                                default='gaming')
     publish = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
+    author = models.ForeignKey(User, on_delete=models.CASCADE,
+                               related_name='blog_posts')
     content = QuillField()
-    status = models.CharField(max_length=10, choices=post_status, default='publish')
+    status = models.CharField(max_length=10, choices=post_status,
+                              default='publish')
     cover_picture = CloudinaryField('article-image', null=True)
     objects = models.Manager()
     new_manager = NewManager()
@@ -55,16 +59,19 @@ class Post(models.Model):
         """For admin panel, returns legible string to make management easier"""
         return self.title
 
+
 class Comments(models.Model):
     """Model for comments"""
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', default=None)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE,
+                             related_name='comments', default=None)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = QuillField(max_length=250)
     created = models.DateTimeField()
     updated = models.DateTimeField()
 
     class Meta:
-        """Reverses comment ordering, also corrects issue with auto plurilisation of apps"""
+        """Reverses comment ordering, corrects issue with
+        auto plurilisation of apps"""
         ordering = ('-created', '-updated')
         verbose_name_plural = "Comments"
 
@@ -84,10 +91,12 @@ class Poll(models.Model):
     )
 
     title = models.CharField(max_length=250)
-    category = models.CharField(max_length=250, choices=categories, default='gaming')
+    category = models.CharField(max_length=250, choices=categories,
+                                default='gaming')
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     thumbs_up_count = models.IntegerField(default=0)
     thumbs_down_count = models.IntegerField(default=0)
+
 
 class Vote(models.Model):
     """

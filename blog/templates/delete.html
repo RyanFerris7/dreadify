@@ -7,8 +7,8 @@
 <div class="container mt-3 mb-3">
     <form method="POST">
         {% csrf_token %}
-        <p>Are you sure you want to delete {{ obj.title }}?</p>
-        <small>This action cannot be reversed.</small>
+        <p class="about">Are you sure you want to delete {{ obj.title }}?</p>
+        <p class="about">This action cannot be reversed.</p>
         <br>
         <br>
         <input class="btn btn-danger" type="submit" value="Confirm">

@@ -3,15 +3,18 @@ from django import forms
 from django_quill.forms import QuillFormField
 from .models import Post, Comments, Poll
 
+
 class CreateBlog(ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'category', 'excerpt', 'cover_picture', 'content']
 
+
 class CommentForm(ModelForm):
     class Meta:
         model = Comments
         fields = ['content']
+
 
 class CreatePoll(ModelForm):
     class Meta:
